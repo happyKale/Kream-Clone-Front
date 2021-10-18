@@ -11,9 +11,9 @@ import { history } from "./redux/store";
 function App() {
   return (
     <ConnectedRouter history={history}>
-     <Route path="/" exact component={Main}/>
-     <Route path="/user" exact component={User}/>
-     <Route path="/detail:" exact component={Detail}/>
+      <Route path="/" exact component={Main} />
+      <Route path="/user" exact component={User} />
+      <Route path="/detail:" exact component={Detail} />
     </ConnectedRouter>
   );
 }
