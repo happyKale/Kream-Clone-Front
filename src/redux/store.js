@@ -3,12 +3,15 @@ import thunk from "redux-thunk";
 import {createBrowserHistory} from "history";
 import {connectRouter} from "connected-react-router";
 
+import show from "./modules/showComponent";
+
 
 //만든 히스토리와 라우터가 연결. 스토어에 브라우저 히스토리가 저장되는 것.
 export const history = createBrowserHistory();
 
 //rootreducer
 const rootReducer = combineReducers({
+    show:show,
     router: connectRouter(history)
 });
 
