@@ -46,7 +46,7 @@ const Login = () => {
             password: userPW
         }
         apis
-            .createAccountAX(user)
+            .loginAX(user)
             .then((response) => {
                 console.log(response)
             })

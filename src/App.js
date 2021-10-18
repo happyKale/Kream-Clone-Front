@@ -9,7 +9,9 @@ import Detail from "./pages/Detail";
 
 import { history } from "./redux/store";
 
+
 function App() {
+
   return (
     <ConnectedRouter history={history}>
      <Route path="/" exact component={Main}/>

@@ -16,6 +16,13 @@ const instance = axios.create({
 
 export const apis = {
 
-    createAccountAX: (user) => instance.post("/signup", user),
+    //회원가입
+    createAccountAX: (user) => instance.post("/user/signup", user), 
+
+    //로그인
+    loginAX: (user) => instance.post("/user/login", user),
+
+    //로그인 확인
+    loginCheckAX: () => instance.get("/user/logincheck"),
     
 };
