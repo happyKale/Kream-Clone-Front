@@ -1,7 +1,11 @@
-import {createStore, combineReducers, applyMiddleware, compose} from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import {createBrowserHistory} from "history";
-import {connectRouter} from "connected-react-router";
+import { createBrowserHistory } from "history";
+import { connectRouter } from "connected-react-router";
+
+import Product from "../redux/modules/product";
+import Size from "./modules/size";
+
 
 
 //만든 히스토리와 라우터가 연결. 스토어에 브라우저 히스토리가 저장되는 것.
@@ -9,12 +13,14 @@ export const history = createBrowserHistory();
 
 //rootreducer
 const rootReducer = combineReducers({
-    router: connectRouter(history)
+    router: connectRouter(history),
+    product: Product,
+    size: Size,
 });
 
 // middlewares 액션 생성함수 실행 후, 리듀서가 실행되기 전에 미들웨어 청크단계에서 히스토리를 사용하기 위해 즉, 비동기에서
 // .then 을 쓸수 있게 하기 위해 설정해준다.
-const middlewares = [thunk.withExtraArgument({history: history})];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 지금이 어느 환경인 지 알려줘요. (개발환경, 프로덕션(배포)환경 ...)
 const env = process.env.NODE_ENV;
@@ -23,7 +29,7 @@ const env = process.env.NODE_ENV;
 if (env === "development") {
     // 패키지 가져올때 쓰는것, 로거는 콘솔에 리덕스 스토어 안의 데이터가 뭐가 담기는지 이전상태 이후상태가 찍힌다. if문안에서만 쓰려고
     // require를 씀
-    const {logger} = require("redux-logger");
+    const { logger } = require("redux-logger");
     middlewares.push(logger);
 }
 

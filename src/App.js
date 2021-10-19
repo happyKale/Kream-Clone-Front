@@ -13,7 +13,7 @@ function App() {
     <ConnectedRouter history={history}>
       <Route path="/" exact component={Main} />
       <Route path="/user" exact component={User} />
-      <Route path="/detail:" exact component={Detail} />
+      <Route path="/detail/:productId" exact component={Detail} />
     </ConnectedRouter>
   );
 }
