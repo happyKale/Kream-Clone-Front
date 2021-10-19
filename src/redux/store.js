@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 import Product from "./modules/product";
 import MyPage from "./modules/mypage";
+import Size from "./modules/size";
 
 //만든 히스토리와 라우터가 연결. 스토어에 브라우저 히스토리가 저장되는 것.
 export const history = createBrowserHistory();
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   product: Product,
   mypage: MyPage,
   router: connectRouter(history),
+  size: Size,
 });
 
 // middlewares 액션 생성함수 실행 후, 리듀서가 실행되기 전에 미들웨어 청크단계에서 히스토리를 사용하기 위해 즉, 비동기에서

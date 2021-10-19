@@ -14,8 +14,8 @@ function App() {
     <ConnectedRouter history={history}>
       <Route path="/" exact component={Main} />
       <Route path="/user" exact component={User} />
-      <Route path="/detail:" exact component={Detail} />
       <Route path="/mypage" exact component={MyPage} />
+      <Route path="/detail/:productId" exact component={Detail} />
     </ConnectedRouter>
   );
 }
