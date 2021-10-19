@@ -8,7 +8,7 @@
           "bookmark": true,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
-          "productId": "제품 아이디1"
+          "productId": "0"
       },
       {
           "brand": "Nike",
@@ -18,7 +18,7 @@
           "bookmark": false,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
-          "productId": "제품 아이디2"
+          "productId": "1"
       },
       {
           "brand": "Nike",
@@ -28,7 +28,7 @@
           "bookmark": true,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
-          "productId": "제품 아이디3"
+          "productId": "2"
       }
   ],
   "mypage": [

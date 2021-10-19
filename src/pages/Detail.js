@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 
 import { actionCreators as productActions } from "../redux/modules/product";
 import { actionCreators as sizeActions } from "../redux/modules/size";
+import { actionCreators as saveTypeActions } from "../redux/modules/transaction";
 
 import MyVerticallyCenteredModal from "../components/MyVerticallyCenteredModal";
 
@@ -75,11 +76,11 @@ const Detail = () => {
                         <b>최근 거래가:</b>
                     </div>
                     {/* 클릭하면 구매 페이지로 이동 */}
-                    <div style={{ color: "#f50000" }}>
+                    <div style={{ color: "#f50000" }} onClick={()=>{history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy"))}}>
                         <b>즉시 구매가:</b>
                     </div>
                     {/* 클릭하면 판매 페이지로 이동 */}
-                    <div style={{ color: "#32bf9e" }}>
+                    <div style={{ color: "#32bf9e" }} onClick={()=>{history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("sell"))}}>
                         <b>즉시 판매가:</b>
                     </div>
                     <div>
