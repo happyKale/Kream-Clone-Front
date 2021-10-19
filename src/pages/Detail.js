@@ -18,6 +18,9 @@ const Detail = () => {
     const productId = useParams();
     const product = useSelector((state) => state.product.product);
     const size = useSelector((state) => state.size.size);
+    const price = useSelector((state) => state.size.price);
+
+    console.log(price);
 
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -26,7 +29,7 @@ const Detail = () => {
         dispatch(productActions.loadProductByIdMW(productId));
         // 모든 사이즈 즉시 구매가 조회 MW dispatch 
         // 단일 사이즈 가격 조회 MW dispatch (size를 인풋으로 받는)
-        console.log("size", size);
+        dispatch(sizeActions.getPriceBySizeMW(productId, size));
     }, [productId, size]);
 
     return (
@@ -63,7 +66,7 @@ const Detail = () => {
                         <b>사이즈:</b>
                         <div>
                             <Button variant="primary" onClick={() => setModalShow(true)}>
-                                모든 사이즈
+                                {size ? size : "사이즈 선택"}
                             </Button>
                             <MyVerticallyCenteredModal
                                 show={modalShow}
@@ -72,15 +75,15 @@ const Detail = () => {
                         </div>
                     </div>
                     <div>
-                        <b>최근 거래가:</b>
+                        <b>최근 거래가:</b> {price?.priceRecent}
                     </div>
                     {/* 클릭하면 구매 페이지로 이동 */}
                     <div style={{ color: "#f50000" }}>
-                        <b>즉시 구매가:</b>
+                        <b>즉시 구매가:</b> {price?.priceBuy}
                     </div>
                     {/* 클릭하면 판매 페이지로 이동 */}
                     <div style={{ color: "#32bf9e" }}>
-                        <b>즉시 판매가:</b>
+                        <b>즉시 판매가:</b> {price?.priceSell}
                     </div>
                     <div>
                         <b>관심상품:</b> {product?.bookmarkCnt}

@@ -1,8 +1,8 @@
 import React from "react";
-import {Route} from "react-router";
-import {ConnectedRouter} from "connected-react-router";
-import {Cookies} from "react-cookie";
-import {apis} from "./lib/axios";
+import { Route } from "react-router";
+import { ConnectedRouter } from "connected-react-router";
+import { Cookies } from "react-cookie";
+import { apis } from "./lib/axios";
 
 import Main from "./pages/Main";
 import Login from "./pages/Login";
@@ -11,9 +11,9 @@ import Detail from "./pages/Detail";
 import Transection from "./pages/Transaction";
 import MyPage from "./pages/MyPage";
 
-import {history} from "./redux/store";
-import {useDispatch} from "react-redux";
-import {checkLogin} from "./redux/modules/user";
+import { history } from "./redux/store";
+import { useDispatch } from "react-redux";
+import { checkLogin } from "./redux/modules/user";
 
 function App() {
 
@@ -52,12 +52,12 @@ function App() {
 
     return (
         <ConnectedRouter history={history}>
-            <Route path="/" exact="exact" component={Main}/>
-            <Route path="/login" exact="exact" component={Login}/>
-            <Route path="/signup" exact="exact" component={Signup}/>
-            <Route path="/test" exact="exact" component={Transection}/>
-            <Route path="/mypage" exact="exact" component={MyPage}/>
-            <Route path="/detail/:productId" exact="exact" component={Detail}/>
+            <Route path="/" exact="exact" component={Main} />
+            <Route path="/login" exact="exact" component={Login} />
+            <Route path="/signup" exact="exact" component={Signup} />
+            <Route path="/test" exact="exact" component={Transection} />
+            <Route path="/mypage" exact="exact" component={MyPage} />
+            <Route path="/detail/:productId" exact="exact" component={Detail} />
         </ConnectedRouter>
     );
 }

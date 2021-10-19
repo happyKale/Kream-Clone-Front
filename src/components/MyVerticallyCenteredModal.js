@@ -11,7 +11,7 @@ import { actionCreators as sizeActions } from "../redux/modules/size";
 function MyVerticallyCenteredModal(props) {
     const dispatch = useDispatch();
 
-    const [size, setSize] = React.useState();
+    const [size, setSize] = React.useState("");
 
     // 임시로 받는 사이즈별 가격 리스트
     // 서버에서 받는 것으로 대체 필요
