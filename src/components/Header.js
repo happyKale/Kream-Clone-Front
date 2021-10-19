@@ -1,30 +1,42 @@
 import React from "react";
-import { apis } from "../lib/axios";
+import {history} from "../redux/store";
+import {useSelector, useDispatch} from "react-redux";
+import {checkLogin} from "../redux/modules/user";
 
 const Header = () => {
 
-    const [is_login, setIsLogin] = React.useState(false);
-
-    React.useEffect(()=>{
-    apis.loginCheckAX().then((response)=>{
-        setIsLogin(response.statusCode === 200? true:false)
-        console.log("[Header.js] login check statusCode:::",response.statusCode);
-    })
-    },[]);
+    const dispatch = useDispatch();
+    const is_login = useSelector(state => state.user.is_login)
+    const title = useSelector(state => state.transection.headerTitle)
+    
 
     return (
         <React.Fragment>
+            <acticle>
+            <div>로고</div>
+            {title !== null?<h1>{title}</h1>:null}
             {
-                is_login?
-                <section>
-                    <button>마이페이지</button>
-                    <button>로그아웃</button>
-                </section>
-                :
-                <section>
-                    <button>로그인</button>
-                </section>
+                is_login
+                    ? <section>
+                            <button
+                                onClick={() => {
+                                    history.push('/mypage')
+                                }}>마이페이지</button>
+                            <button
+                                onClick={() => {
+                                    dispatch(checkLogin(false))
+                                }}>로그아웃</button>
+                        </section>
+                    : <section>
+                            <button
+                                onClick={() => {
+                                    history.push('/login')
+                                }}>로그인</button>
+                        </section>
             }
+            </acticle>
         </React.Fragment>
     )
 }
+
+export default Header;
