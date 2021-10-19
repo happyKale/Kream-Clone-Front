@@ -2,20 +2,24 @@ import {createStore, combineReducers, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
 import {createBrowserHistory} from "history";
 import {connectRouter} from "connected-react-router";
-
+import Product from "./modules/product";
+import MyPage from "./modules/mypage";
+import Size from "./modules/size";
 import show from "./modules/showComponent";
 import user from "./modules/user";
-import transection from "./modules/transection"
-
+import transaction from "./modules/transaction"
 
 //만든 히스토리와 라우터가 연결. 스토어에 브라우저 히스토리가 저장되는 것.
 export const history = createBrowserHistory();
 
 //rootreducer
 const rootReducer = combineReducers({
-    show:show,
-    user:user,
-    transection:transection,
+    show: show,
+    user: user,
+    product: Product,
+    mypage: MyPage,
+    size: Size,
+    transaction: transaction,
     router: connectRouter(history)
 });
 

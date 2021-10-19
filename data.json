@@ -1,0 +1,106 @@
+{
+  "product": [
+      {
+          "brand": "Nike",
+          "modelName": "Nike Dunk Low Retro Championship Goldenrod",
+          "price": "166,000",
+          "image": "이미지",
+          "bookmark": true,
+          "statusCode": 200,
+          "msg": "메인 페이지 로딩 성공",
+          "productId": "제품 아이디1"
+      },
+      {
+          "brand": "Nike",
+          "modelName": "Nike Dunk Low Retro ",
+          "price": "106,000",
+          "image": "이미지",
+          "bookmark": false,
+          "statusCode": 200,
+          "msg": "메인 페이지 로딩 성공",
+          "productId": "제품 아이디2"
+      },
+      {
+          "brand": "Nike",
+          "modelName": "Nike Championship Goldenrod XW",
+          "price": "666,000",
+          "image": "이미지",
+          "bookmark": true,
+          "statusCode": 200,
+          "msg": "메인 페이지 로딩 성공",
+          "productId": "제품 아이디3"
+      }
+  ],
+  "mypage": [
+      {
+          "buyList": [
+              {
+                  "transactionStatus": "completed",
+                  "modelName": "Nike x Patta Air Max 1 Monarch;나이키 x 파타 에어맥스 1 모나크",
+                  "transactionPrice": "230,000",
+                  "purchaseType": "bidding"
+              },
+              {
+                  "transactionStatus": "completed",
+                  "modelName": "Nike x Sacai x Clot LDWaffle Cool Grey;나이키 x 사카이 x 클랏 LD와플 쿨 그레이",
+                  "transactionPrice": "369,000",
+                  "purchaseType": "bidding"
+              },
+              {
+                  "transactionStatus": "completed",
+                  "modelName": "(W) Nike Air Force 1 '07 LV8 Hangul Day;W) 나이키 에어포스 1 '07 LV8 한글날",
+                  "transactionPrice": "134,000",
+                  "purchaseType": "bidding"
+              },
+              {
+                  "transactionStatus": "ongoing",
+                  "modelName": "(W) Nike Air Force 1 '07 LV8 Hangul Day;W) 나이키 에어포스 1 '07 LV8 한글날",
+                  "transactionPrice": "134,000",
+                  "purchaseType": "bidding"
+              }
+          ],
+          "sellList": [
+              {
+                  "transactionStatus": "ongoing",
+                  "modelName": "Jordan 1 Low Green Toe;조던 1 로우 그린토",
+                  "transactionPrice": "199,000",
+                  "purchaseType": "prompt"
+              },
+              {
+                  "transactionStatus": "ongoing",
+                  "modelName": "(GS) Nike x NBA Dunk Low Nets;(GS) 나이키 x NBA 덩크 로우 네츠",
+                  "transactionPrice": "204,000",
+                  "purchaseType": "prompt"
+              },
+              {
+                  "transactionStatus": "ongoing",
+                  "modelName": "Nike Air Force 1 '07 LV8 Hangul Day;나이키 에어포스 1 '07 LV8 한글날",
+                  "transactionPrice": "133,000",
+                  "purchaseType": "prompt"
+              }
+          ],
+          "bookMarkList": [
+              {
+                  "brand": "New Balance",
+                  "modelName": "New Balance 992 Made in USA Grey (D Standard);뉴발란스 992 메이드 인 USA 그레이 (D 스탠다드)",
+                  "price": "259,000",
+                  "image": "https://kream-phinf.pstatic.net/MjAyMTEwMDZfMjky/MDAxNjMzNDg1MjI1NzE5.M2OkLYAXI1tjBr4cxk27cn5GMkgIXthCnCo8_TCShQEg.0IxAyhrhc6G09RcsVtNilDz7DSOXuOmye1Qt3lpAurEg.JPEG/a_3b619e8a1c10447f87bc80fe4f507fe5.jpg?type=l"
+              },
+              {
+                  "brand": "New Balance",
+                  "modelName": "New Balance 992 Made in USA Tan;뉴발란스 992 메이드 인 USA 탄",
+                  "price": "390,000",
+                  "image": "https://media.endclothing.com/media/catalog/product/0/6/06-02-2020_newbalance_m992tn_madeintheusa_tan_m992tn_jd_1.jpg"
+              },
+              {
+                  "brand": "Jordan",
+                  "modelName": "Jordan 1 Mid Light Smoke Grey;조던 1 미드 라이트 스모크 그레이",
+                  "price": "600,000",
+                  "image": "https://dailysole.com/wp-content/uploads/2020/03/air-jordan-1-mid-light-smoke-grey-554724-092-release-date-info-4-932x1024.jpg"
+              }
+          ],
+          "statusCode": 200,
+          "msg": "마이페이지 로딩 성공"
+      }
+  ]
+}
