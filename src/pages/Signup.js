@@ -1,6 +1,7 @@
 import React from "react";
 import {apis} from "../lib/axios";
 import _ from "lodash";
+import { history } from "../redux/store";
 
 const Signup = () => {
 
@@ -44,10 +45,12 @@ const Signup = () => {
             username: userEmail,
             password: userPW
         }
+        console.log("[Signup] user :::",user)
         apis
             .createAccountAX(user)
             .then((response) => {
                 console.log(response)
+                history.push('/login')
             })
             .catch((error) => {
                 console.log("[Signup error] createAccountAX :::", error)
@@ -68,6 +71,7 @@ const Signup = () => {
             <label>
                 <p>비밀번호</p>
                 <input
+                type="password"
                     onChange={(e) => {
                         onChangePW(e)
                     }}/>

@@ -5,7 +5,6 @@ import {createAction, handleActions} from "redux-actions";
 const initialState = {
     login:true,
     signup:false, //사용 의미 있나?
-    is_login:false
 }
 
 const LOGIN_SHOW = "LOGIN_SHOW";

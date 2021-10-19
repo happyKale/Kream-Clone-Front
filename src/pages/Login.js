@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { history } from "../redux/store";
 import { apis } from "../lib/axios";
 import _ from "lodash";
