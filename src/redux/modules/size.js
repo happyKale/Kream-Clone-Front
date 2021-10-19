@@ -22,16 +22,22 @@ const setSize = createAction(SET_SIZE, (size) => ({ size }));
 
 
 
+
+
 // MIDDLEWARES
 const getPriceBySizeMW = (productId, size) => {
     return function (dispatch, getState, { history }) {
         apis
-            .getPriceBySizeAX()
+            .getPriceBySizeAX(productId, size)
             .then((response) => {
-                // console.log(response);
+                // console.log(response.data[0]);
+                const priceBySize = response.data[0];
+                dispatch(getPriceBySize(priceBySize));
             })
     }
 }
+
+
 
 
 // REDUCER
@@ -44,7 +50,7 @@ export default handleActions(
 
         [GET_PRICE_BY_SIZE]: (state, action) =>
             produce(state, (draft) => {
-                console.log("getPriceBySizeMW 연결!")
+                draft.price = action.payload.price;
             }),
     },
     initialState

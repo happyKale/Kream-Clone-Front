@@ -1,8 +1,8 @@
 import React from "react";
-import {Route} from "react-router";
-import {ConnectedRouter} from "connected-react-router";
-import {Cookies} from "react-cookie";
-import {apis} from "./lib/axios";
+import { Route } from "react-router";
+import { ConnectedRouter } from "connected-react-router";
+import { Cookies } from "react-cookie";
+import { apis } from "./lib/axios";
 
 import Main from "./pages/Main";
 import Login from "./pages/Login";
@@ -11,9 +11,9 @@ import Detail from "./pages/Detail";
 import Transection from "./pages/Transaction";
 import MyPage from "./pages/MyPage";
 
-import {history} from "./redux/store";
-import {useDispatch} from "react-redux";
-import {checkLogin} from "./redux/modules/user";
+import { history } from "./redux/store";
+import { useDispatch } from "react-redux";
+import { checkLogin } from "./redux/modules/user";
 
 function App() {
 
