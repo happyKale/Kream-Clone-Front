@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <React.Fragment>
-            <acticle>
+            <article>
             <div>로고</div>
             {title !== null?<h1>{title}</h1>:null}
             {
@@ -34,7 +34,7 @@ const Header = () => {
                                 }}>로그인</button>
                         </section>
             }
-            </acticle>
+            </article>
         </React.Fragment>
     )
 }

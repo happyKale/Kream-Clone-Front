@@ -2,6 +2,7 @@ import React from "react";
 import { history } from "../redux/store";
 import { apis } from "../lib/axios";
 import _ from "lodash";
+import {Cookies} from "react-cookie";
 
 const Login = () => {
     const [userEmail, setEmail] = React.useState();
@@ -40,6 +41,7 @@ const Login = () => {
     }, 1000), [])
 
     const loginButton = () => {
+        const cookies = new Cookies();
         const user = {
             username: userEmail,
             password: userPW
@@ -47,10 +49,11 @@ const Login = () => {
         apis
             .loginAX(user)
             .then((response) => {
-                console.log(response)
+                console.log("[Login now] response",response.data.token)
+                cookies.set("X-AUTH-TOKEN",response.data.token);
             })
             .catch((error) => {
-                console.log("[Signup error] createAccountAX :::", error)
+                console.log("[Login error] createAccountAX :::", error)
             });
     }
 
