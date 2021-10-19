@@ -19,36 +19,36 @@ function App() {
 
     const dispatch = useDispatch();
 
-    // React.useEffect(() => {
-    //     const cookies = new Cookies();
-    //     const token = cookies.get("X-AUTH-TOKEN");
+    React.useEffect(() => {
+        const cookies = new Cookies();
+        const token = cookies.get("X-AUTH-TOKEN");
 
-    //     console.log("token? :::", token);
-    //     if (token === undefined) {
-    //         dispatch(checkLogin(false));
-    //         history.push("/login");
-    //         console.log("token is undefined");
-    //     } else if (token !== undefined) {
-    //         apis
-    //             .loginCheckAX()
-    //             .then((res) => {
-    //                 console.log("[Login] response:::", res)
-    //                 if (res.data.statusCode === "500") {
-    //                     dispatch(checkLogin(false));
-    //                     history.push('/login');
+        console.log("token? :::", token);
+        if (token === undefined) {
+            dispatch(checkLogin(false));
+            history.push("/login");
+            console.log("token is undefined");
+        } else if (token !== undefined) {
+            apis
+                .loginCheckAX()
+                .then((res) => {
+                    console.log("[Login] response:::", res)
+                    if (res.data.statusCode === "500") {
+                        dispatch(checkLogin(false));
+                        history.push('/login');
 
-    //                 } else if (res.data.statusCode === "200") {
-    //                     dispatch(checkLogin(true));
-    //                     console.log("res:::", res);
-    //                     dispatch(checkLogin(true))
-    //                     history.push('/');
-    //                 }
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err)
-    //             })
-    //         }
-    // }, [])
+                    } else if (res.data.statusCode === "200") {
+                        dispatch(checkLogin(true));
+                        console.log("res:::", res);
+                        dispatch(checkLogin(true))
+                        history.push('/');
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }
+    }, [])
 
     return (
         <ConnectedRouter history={history}>

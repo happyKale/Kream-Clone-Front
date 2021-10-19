@@ -3,6 +3,7 @@ import { history } from "../redux/store";
 import { apis } from "../lib/axios";
 import _ from "lodash";
 import {Cookies} from "react-cookie";
+import styled from "styled-components";
 
 const Login = () => {
     const [userEmail, setEmail] = React.useState();
@@ -59,7 +60,7 @@ const Login = () => {
 
     return (
     <React.Fragment>
-        <h1>로그인</h1>
+        <StyledLoginLogo src="https://kream.co.kr/_nuxt/img/login_title.9f9ccc8.png"/>
         <label>
             <p>이메일 주소</p>
             <input onChange={(e)=>{onChangeEmail(e)}}/>
@@ -75,5 +76,9 @@ const Login = () => {
     </React.Fragment>
     )
 }
+
+const StyledLoginLogo = styled.img`
+width:250px;
+`
 
 export default Login;

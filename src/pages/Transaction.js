@@ -1,8 +1,7 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import _ from "lodash";
-import { apis } from "../lib/axios";
-import { actionCreators as transectionAction } from "../redux/modules/transaction";
+import {actionCreators as transectionAction} from "../redux/modules/transaction";
 import Header from "../components/Header";
 
 const Transection = () => {
@@ -20,6 +19,8 @@ const Transection = () => {
     const TextList = componentType === "buy"
         ? "구매"
         : "판매";
+
+    //임시 값
     const productInfo = productInfoList[0].productInfo;
     const productPrice = productInfoList[1].productPrice;
     const productPost = productInfoList[2].productPost;
@@ -44,14 +45,16 @@ const Transection = () => {
 
         const list = {
             requestType: componentType, //sell or buy
-            purchaseType:is_bidding?"bidding":"prompt", //bidding: 입찰, prompt:즉시거래
-            priceExpected:is_bidding
-            ? inputValue
-            : productPrice.priceBuy, // 구매/판매 입찰가
-            size : size,
+            purchaseType: is_bidding
+                ? "bidding"
+                : "prompt", //bidding: 입찰, prompt:즉시거래
+            priceExpected: is_bidding
+                ? inputValue
+                : productPrice.priceBuy, // 구매/판매 입찰가
+            size: size
         }
         dispatch(transectionAction.productInfoMW(list))
-        
+
     }
 
     return (
@@ -89,7 +92,7 @@ const Transection = () => {
                         <button
                             onClick={() => {
                                 setBidding(true);
-                                dispatch(transectionAction.headerTitle("즉시 "+TextList+"하기"))
+                                dispatch(transectionAction.headerTitle("즉시 " + TextList + "하기"))
                             }}>{
                                 componentType === "buy"
                                     ? "구매 입찰"
@@ -98,7 +101,7 @@ const Transection = () => {
                         <button
                             onClick={() => {
                                 setBidding(false);
-                                dispatch(transectionAction.headerTitle(TextList+" 입찰하기"))
+                                dispatch(transectionAction.headerTitle(TextList + " 입찰하기"))
                             }}>{
                                 componentType === "buy"
                                     ? "즉시 구매"
