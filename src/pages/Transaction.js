@@ -12,8 +12,10 @@ const Transection = () => {
     const [is_bidding, setBidding] = React.useState(false);
     const [inputValue, setInputValue] = React.useState('_');
 
-    const productInfoList = useSelector(state => state.transection.list);
-    const componentType = useSelector(state => state.transection.componentType);
+    const productInfoList = useSelector(state => state.transaction.list);
+    const componentType = useSelector(state => state.transaction.componentType);
+    const product = useSelector(state => state.product.product);
+    const size = useSelector(state => state.size.size);
 
     const TextList = componentType === "buy"
         ? "구매"
@@ -23,7 +25,7 @@ const Transection = () => {
     const productPost = productInfoList[2].productPost;
 
     const button = () => {
-        console.log("[Transection] product info:::", productInfo);
+        console.log("[Transection] product info:::", product);
         console.log("[Transection] productPrice:::", productPrice);
         console.log("[Transection] productPost:::", productPost);
     }
@@ -45,7 +47,8 @@ const Transection = () => {
             purchaseType:is_bidding?"bidding":"prompt", //bidding: 입찰, prompt:즉시거래
             priceExpected:is_bidding
             ? inputValue
-            : productPrice.priceBuy // 구매/판매 입찰가
+            : productPrice.priceBuy, // 구매/판매 입찰가
+            size : size,
         }
         dispatch(transectionAction.productInfoMW(list))
         
@@ -57,20 +60,20 @@ const Transection = () => {
             <button onClick={button}>테스트버튼</button>
             <article>
                 <section>
-                    <img src={productInfo.image} width="100px" height="100px" alt=""/>
+                    <img src={product.image} width="100px" height="100px" alt=""/>
                     <div>
-                        <h1>{productInfo.brand}</h1>
+                        <h1>{product.brand}</h1>
                         <p>{
-                                productInfo
+                                product
                                     .modelName
                                     .split(";")[0]
                             }</p>
                         <p>{
-                                productInfo
+                                product
                                     .modelName
                                     .split(";")[1]
                             }</p>
-                        <p>270</p>
+                        <p>{size}</p>
                     </div>
                 </section>
                 <section>

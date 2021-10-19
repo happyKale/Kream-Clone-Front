@@ -48,7 +48,7 @@ const Main = () => {
         {productList &&
           productList.map((product) => {
             return (
-              <div key={product.productId} style={productStyle}>
+              <div key={product.productId} style={productStyle} onClick={()=>{history.push(`/detail/${product.productId}`)}}>
                 {/* 상품 하나 */}
                 <div style={productImgStyle}>{/* 상품 이미지 */}</div>
                 <div>

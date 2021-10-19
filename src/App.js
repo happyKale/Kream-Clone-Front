@@ -52,12 +52,12 @@ function App() {
 
     return (
         <ConnectedRouter history={history}>
-            <Route path="/" exact="exact" component={Main} />
-            <Route path="/login" exact="exact" component={Login} />
-            <Route path="/signup" exact="exact" component={Signup} />
-            <Route path="/test" exact="exact" component={Transection} />
-            <Route path="/mypage" exact="exact" component={MyPage} />
-            <Route path="/detail/:productId" exact="exact" component={Detail} />
+            <Route path="/" exact="exact" component={Main}/>
+            <Route path="/login" exact="exact" component={Login}/>
+            <Route path="/signup" exact="exact" component={Signup}/>
+            <Route path="/transaction/:productID" exact component={Transection}/>
+            <Route path="/mypage" exact="exact" component={MyPage}/>
+            <Route path="/detail/:productId" exact component={Detail}/>
         </ConnectedRouter>
     );
 }

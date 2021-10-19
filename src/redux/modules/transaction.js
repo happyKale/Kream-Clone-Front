@@ -26,7 +26,7 @@ const initialState = {
     ],
     componentType:'buy', //sell or buy
     productID:"",
-    headerTitle:""
+    headerTitle:"" //즉시 구매하기, 즉시 판매하기
     
 }
 
@@ -46,6 +46,7 @@ const productInfoMW = (list) => {
             apis.transectionAX(productID,list).then((response)=>{
                 console.log(response)
                 dispatch(headerTitle(null))
+                alert('완료되었습니다.');
             }).catch((error)=>{
                 console.log("[Transection] Error :::",error);
             })
@@ -57,6 +58,7 @@ export default handleActions({
 
     [COMPONENT_TYPE]: (state, action) => produce(state, (draft) => {
         draft.componentType = action.payload.type;
+        draft.headerTitle = action.payload.type === "buy"? "즉시 구매하기" : "즉시 판매하기";
     }),
     [PRODUCT_ID]: (state, action) => produce(state, (draft) => {
         draft.productID = action.payload.id;

@@ -7,7 +7,7 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const is_login = useSelector(state => state.user.is_login)
-    const title = useSelector(state => state.transection.headerTitle)
+    const title = useSelector(state => state.transaction.headerTitle)
     
 
     return (
