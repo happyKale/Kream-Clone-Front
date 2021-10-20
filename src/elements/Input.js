@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 const Input = (props) => {
 
-    const {type, onChange, placeholder} = props;
-
+    const {type, onChange, placeholder, warn} = props;
+    const styles = {
+        warn:warn,
+    }
     return (
         <React.Fragment>
-            <StyledInput type={type} onChange={onChange} placeholder={placeholder}/>
+            <StyledInput {...styles} type={type} onChange={onChange} placeholder={placeholder}/>
         </React.Fragment>
     )
 }
@@ -26,12 +28,12 @@ const StyledInput = styled.input`
     line-height: 22px;
     border: none;
     border-bottom: 1px solid #ebebeb;
-    padding-right: 30px;
+    padding: 8px 30px 8px 0;
     height: 38px;
 
     &:focus{
         outline: none;
-        border-bottom: 2px solid #333;
+        border-bottom: 2px solid ${(props)=>props.warn?"#f15746":"#333"};
     }
 `
 

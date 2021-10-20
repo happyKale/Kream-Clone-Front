@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Button = (props) => {
 
-    const {children, backgroundColor} = props;
+    const {children, backgroundColor, disabled} = props;
 
     const styles = {
         backgroundColor:backgroundColor,
@@ -11,13 +11,14 @@ const Button = (props) => {
 
     return (
         <React.Fragment>
-            <StyledButton {...styles}>{children}</StyledButton>
+            <StyledButton {...styles} disabled={disabled}>{children}</StyledButton>
         </React.Fragment>
     )
 }
 
 Button.defaultProps = {
-    color:"#EBEBEB",
+    backgroundColor:"#EBEBEB",
+    disabled:true
 }
 
 const StyledButton = styled.button`
@@ -30,8 +31,11 @@ const StyledButton = styled.button`
     border-radius: 12px;
     border:none;
     color:#fff;
-
     background-color: ${(props)=>props.backgroundColor};
+
+    &:disabled{
+        background-color:#EBEBEB;
+    }
 `
 
 export default Button;
