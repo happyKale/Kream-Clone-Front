@@ -35,6 +35,10 @@ const StyledInput = styled.input`
         outline: none;
         border-bottom: 2px solid ${(props)=>props.warn?"#f15746":"#333"};
     }
+
+    &::placeholder{
+        color:#bcbcbc;
+    }
 `
 
 export default Input;

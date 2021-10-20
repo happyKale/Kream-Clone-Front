@@ -102,10 +102,11 @@ border-bottom: 1px solid rgba(0,0,0,.1);
     display: flex;
     justify-content: right;
 }
+
 .innerBox > div {
+    display: flex;
     width:fit-content;
     height: 16px;
-    display: flex;
     align-items: center;
     a {
         font-size: 12px;
@@ -114,6 +115,7 @@ border-bottom: 1px solid rgba(0,0,0,.1);
     }
     a.myPage {margin-right:24px;}
 }
+
 button {
         display: none;
 }
@@ -124,63 +126,68 @@ button {
     display: none;
     position: absolute;
     height: 100%;
-    background-color: none;
-    z-index: 10;
 
-    
-    div.innerBox{
+    .innerBox{
         display: block;
         position: absolute;
-        z-index: 20;
+        z-index: -1;
         top: 0;
         right: 0;
-        bottom: 0;
         width: 79.4%;
         height: 100%;
         background-color: #fff;
-        padding-top: 60px;
-        overflow-y: auto;
         
+    }
+    .innerBox > div {
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        top:60px;
+        a{
+            position: absolute;
+            width: 100%;
+            text-align: left;
+            font-size: 15px;
+            line-height: 15px;
+            letter-spacing: -.15px;
+            font-weight: 700;
+            border-bottom: 1px solid #ebebeb;
+            padding:19px 20px 18px;
+            box-sizing: border-box;
+            cursor: pointer;
+            z-index: 200;
+            background-color: #fff;
+        }
+        a.myPage {margin-right:0;}
+        a.logout {top:53px;}
+    }
+
+    .innerBox button {
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 11px;
+        top: 18px;
+        z-index: 20;
     }
 
     a{pointer-events:none;}
+
     &.on{
         display: block;
-        height: 100%;
         animation: ${mobileMenu} .3s ease-in-out forwards;
+        z-index: 10;
     }
-
-    &.on div.innerBox{
+    &.on a{ pointer-events:auto; }
+    &.on .innerBox{
         animation: ${mobileMenuInner} .3s ease-in-out forwards;
-        
-        div {
-            padding-top:60px ;
-            width: 100%;
-            a{
-                display: block;
-                width: 100%;
-                text-align: left;
-                padding: 19px 20px 18px;
-                font-size: 15px;
-                letter-spacing: -.15px;
-                font-weight: 700;
-                border-bottom: 1px solid #ebebeb;
-            }
-        }
-
-        button{
-            width: 24px;
-            height: 24px;
-            border: none;
-            background: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            right: 11px;
-            top: 18px;
-            z-index: 20;
-        }
+        z-index: 20;
     }
 }
 
