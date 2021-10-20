@@ -15,6 +15,8 @@ import { history } from "./redux/store";
 import { useDispatch } from "react-redux";
 import { checkLogin } from "./redux/modules/user";
 
+import Header from "./components/Header";
+
 function App() {
 
     const dispatch = useDispatch();
@@ -51,14 +53,17 @@ function App() {
     // }, [])
 
     return (
-        <ConnectedRouter history={history}>
-            <Route path="/" exact="exact" component={Main}/>
-            <Route path="/login" exact="exact" component={Login}/>
-            <Route path="/signup" exact="exact" component={Signup}/>
-            <Route path="/transaction/:productID" exact component={Transection}/>
-            <Route path="/mypage" exact="exact" component={MyPage}/>
-            <Route path="/detail/:productId" exact component={Detail}/>
-        </ConnectedRouter>
+        <div>
+            <Header />
+            <ConnectedRouter history={history}>
+                <Route path="/" exact="exact" component={Main} />
+                <Route path="/login" exact="exact" component={Login} />
+                <Route path="/signup" exact="exact" component={Signup} />
+                <Route path="/transaction/:productID" exact component={Transection} />
+                <Route path="/mypage" exact="exact" component={MyPage} />
+                <Route path="/detail/:productId" exact component={Detail} />
+            </ConnectedRouter>
+        </div>
     );
 }
 

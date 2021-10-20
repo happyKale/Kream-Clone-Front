@@ -31,6 +31,7 @@ const Detail = () => {
         // 모든 사이즈 즉시 구매가 조회 MW dispatch 
         // 단일 사이즈 가격 조회 MW dispatch (size를 인풋으로 받는)
         dispatch(sizeActions.getPriceBySizeMW(productId, size));
+        // 북마크 갯수 조회 MW dispatch
     }, [productId, size]);
 
     return (

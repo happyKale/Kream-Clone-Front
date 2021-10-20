@@ -22,8 +22,6 @@ const setSize = createAction(SET_SIZE, (size) => ({ size }));
 
 
 
-
-
 // MIDDLEWARES
 const getPriceBySizeMW = (productId, size) => {
     return function (dispatch, getState, { history }) {
@@ -36,7 +34,6 @@ const getPriceBySizeMW = (productId, size) => {
             })
     }
 }
-
 
 
 
