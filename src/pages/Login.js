@@ -85,7 +85,7 @@ const Login = () => {
                                 onChangePW(e)
                             }}
                             type="password"
-                            warn={passEmail?false:true}
+                            warn={passPW?false:true}
                             />
                         <div><Text fontSize="11px" color="#f15746">{warnPw}</Text></div>
                     </label>
