@@ -4,7 +4,7 @@ import {apis} from "../lib/axios";
 import _ from "lodash";
 import {Cookies} from "react-cookie";
 import styled from "styled-components";
-import {Button, Input,Text} from "../elements/index";
+import {Button, Input, Text} from "../elements/index";
 import Header from "../components/Header";
 
 const Login = () => {
@@ -63,50 +63,64 @@ const Login = () => {
     return (
         <React.Fragment>
             <StyledArticle>
-            <Header/>
-            <StyledSection>
-                <div>
-                    <StyledLoginLogo src="https://kream.co.kr/_nuxt/img/login_title.9f9ccc8.png"/>
-                    <label>
-                        <Text color={passEmail === "set" || passEmail? "#000" :"#f15746"}>이메일 주소</Text>
-                        <Input
-                            onChange={(e) => {
-                                onChangeEmail(e)
-                            }}
-                            placeholder="예) kream@kream.co.kr"
-                            warn={passEmail?false:true}
-                            />
-                        <div><Text fontSize="11px" color="#f15746">{warnEmail}</Text></div>
-                    </label>
-                    <label>
-                        <Text color={passPW === "set" || passPW? "#000" :"#f15746"}>비밀번호</Text>
-                        <Input
-                            onChange={(e) => {
-                                onChangePW(e)
-                            }}
-                            type="password"
-                            warn={passPW?false:true}
-                            />
-                        <div><Text fontSize="11px" color="#f15746">{warnPw}</Text></div>
-                    </label>
-                    <StyledButtonBox>
-                    <Button
-                    backgroundColor="#222"
-                        onClick={loginButton}
-                        disabled={!(passEmail && passPW) || (passEmail === "set" || passPW ==="set")? true : false  }>로그인</Button>
-                    </StyledButtonBox>
-                    <StyledP
-                        onClick={() => {
-                            history.push('/signup');
-                        }}>이메일가입</StyledP>
-                </div>
-            </StyledSection>
+                <Header/>
+                <StyledSection>
+                    <div>
+                        <StyledLoginLogo src="https://kream.co.kr/_nuxt/img/login_title.9f9ccc8.png"/>
+                        <label>
+                            <Text
+                                color={passEmail === "set" || passEmail
+                                    ? "#000"
+                                    : "#f15746"}>이메일 주소</Text>
+                            <Input
+                                onChange={(e) => {
+                                    onChangeEmail(e)
+                                }}
+                                placeholder="예) kream@kream.co.kr"
+                                warn={passEmail
+                                    ? false
+                                    : true}/>
+                            <div>
+                                <Text fontSize="11px" color="#f15746">{warnEmail}</Text>
+                            </div>
+                        </label>
+                        <label>
+                            <Text
+                                color={passPW === "set" || passPW
+                                    ? "#000"
+                                    : "#f15746"}>비밀번호</Text>
+                            <Input
+                                onChange={(e) => {
+                                    onChangePW(e)
+                                }}
+                                type="password"
+                                warn={passPW
+                                    ? false
+                                    : true}/>
+                            <div>
+                                <Text fontSize="11px" color="#f15746">{warnPw}</Text>
+                            </div>
+                        </label>
+                        <StyledButtonBox>
+                            <Button
+                                backgroundColor="#222"
+                                onClick={loginButton}
+                                disabled={!(passEmail && passPW) || (passEmail === "set" || passPW === "set")
+                                    ? true
+                                    : false}>로그인</Button>
+                        </StyledButtonBox>
+                        <StyledP
+                            onClick={() => {
+                                history.push('/signup');
+                            }}>이메일가입</StyledP>
+                    </div>
+                </StyledSection>
             </StyledArticle>
         </React.Fragment>
     )
 }
 
-const StyledArticle = styled.article`
+const StyledArticle = styled.article `
 width:100%;
 height:100%;
 display: flex;
@@ -147,7 +161,7 @@ width:250px;
 padding-bottom: 50px;
 `
 
-const StyledP = styled.p`
+const StyledP = styled.p `
 width: fit-content;
 margin-top: 18px;
 font-weight: 400;
@@ -155,7 +169,7 @@ font-size: 13px;
 cursor: pointer;
 `
 
-const StyledButtonBox = styled.div`
+const StyledButtonBox = styled.div `
 padding-top: 45px;
 width: 100%;
 
