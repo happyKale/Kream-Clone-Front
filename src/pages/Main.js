@@ -30,14 +30,8 @@ const Main = () => {
 
   return (
     <React.Fragment>
-      <button
-        onClick={() => {
-          history.push("/detail");
-        }}
-      >
-        테스트버튼-디테일 이동
-      </button>
-
+      
+      <Header/>
       {/* 헤더 */}
       <div></div>
       {/* 슬라이드 베너 */}
