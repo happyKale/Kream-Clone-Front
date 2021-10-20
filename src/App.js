@@ -1,8 +1,8 @@
 import React from "react";
-import {Route} from "react-router";
-import {ConnectedRouter} from "connected-react-router";
-import {Cookies} from "react-cookie";
-import {apis} from "./lib/axios";
+import { Route } from "react-router";
+import { ConnectedRouter } from "connected-react-router";
+import { Cookies } from "react-cookie";
+import { apis } from "./lib/axios";
 
 import Main from "./pages/Main";
 import Login from "./pages/Login";
@@ -11,44 +11,44 @@ import Detail from "./pages/Detail";
 import Transection from "./pages/Transaction";
 import MyPage from "./pages/MyPage";
 
-import {history} from "./redux/store";
-import {useDispatch} from "react-redux";
-import {checkLogin} from "./redux/modules/user";
+import { history } from "./redux/store";
+import { useDispatch } from "react-redux";
+import { checkLogin } from "./redux/modules/user";
 
 function App() {
 
     const dispatch = useDispatch();
 
-    // React.useEffect(() => {
-    //     const cookies = new Cookies();
-    //     const token = cookies.get("X-AUTH-TOKEN");
+    React.useEffect(() => {
+        const cookies = new Cookies();
+        const token = cookies.get("X-AUTH-TOKEN");
 
-    //     console.log("token? :::", token);
-    //     if (token === undefined) {
-    //         dispatch(checkLogin(false));
-    //         history.push("/login");
-    //         console.log("token is undefined");
-    //     } else if (token !== undefined) {
-    //         apis
-    //             .loginCheckAX()
-    //             .then((res) => {
-    //                 console.log("[Login] response:::", res)
-    //                 if (res.data.statusCode === "500") {
-    //                     dispatch(checkLogin(false));
-    //                     history.push('/login');
+        console.log("token? :::", token);
+        if (token === undefined) {
+            dispatch(checkLogin(false));
+            history.push("/login");
+            console.log("token is undefined");
+        } else if (token !== undefined) {
+            apis
+                .loginCheckAX()
+                .then((res) => {
+                    console.log("[Login] response:::", res)
+                    if (res.data.statusCode === "500") {
+                        dispatch(checkLogin(false));
+                        history.push('/login');
 
-    //                 } else if (res.data.statusCode === "200") {
-    //                     dispatch(checkLogin(true));
-    //                     console.log("res:::", res);
-    //                     dispatch(checkLogin(true))
-    //                     history.push('/');
-    //                 }
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err)
-    //             })
-    //         }
-    // }, [])
+                    } else if (res.data.statusCode === "200") {
+                        dispatch(checkLogin(true));
+                        console.log("res:::", res);
+                        dispatch(checkLogin(true))
+                        history.push('/');
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }
+    }, [])
 
     return (
         <ConnectedRouter history={history}>
