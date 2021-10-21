@@ -5,38 +5,47 @@ import { apis } from "../../lib/axios";
 
 // STATES
 const initialState = {
+    priceBuyPromptList: null,
     size: null,
-    price: null,
+    priceBySize: null,
 }
 
 
 // ACTIONS
+const GET_PRICE_BUY_PROMPT = "GET_PRICE_BUY_PROMPT";
 const GET_PRICE_BY_SIZE = "GET_PRICE_BY_SIZE";
 const SET_SIZE = "SET_SIZE";
 
 
-
 // ACTION CREATORS
-const getPriceBySize = createAction(GET_PRICE_BY_SIZE, (price) => ({ price }));
+const getPriceBuyPrompt = createAction(GET_PRICE_BUY_PROMPT, (priceBuyPromptList) => ({ priceBuyPromptList }));
+const getPriceBySize = createAction(GET_PRICE_BY_SIZE, (priceBySize) => ({ priceBySize }));
 const setSize = createAction(SET_SIZE, (size) => ({ size }));
 
 
-
-
-
 // MIDDLEWARES
+const getPriceBuyPromptMW = (productId) => {
+    return function (dispatch, getState, { history }) {
+        apis
+            .getPricePromptBuyAX(productId)
+            .then((response) => {
+                const priceBuyPromptList = response.data.priceBuy;
+                // console.log(priceBuyPromptList);
+                dispatch(getPriceBuyPrompt(priceBuyPromptList));
+            })
+    }
+}
+
 const getPriceBySizeMW = (productId, size) => {
     return function (dispatch, getState, { history }) {
         apis
             .getPriceBySizeAX(productId, size)
             .then((response) => {
-                // console.log(response.data[0]);
-                const priceBySize = response.data[0];
+                const priceBySize = response.data;
                 dispatch(getPriceBySize(priceBySize));
             })
     }
 }
-
 
 
 
@@ -50,7 +59,11 @@ export default handleActions(
 
         [GET_PRICE_BY_SIZE]: (state, action) =>
             produce(state, (draft) => {
-                draft.price = action.payload.price;
+                draft.priceBySize = action.payload.priceBySize;
+            }),
+        [GET_PRICE_BUY_PROMPT]: (state, action) =>
+            produce(state, (draft) => {
+                draft.priceBuyPromptList = action.payload.priceBuyPromptList;
             }),
     },
     initialState
@@ -59,4 +72,5 @@ export default handleActions(
 export const actionCreators = {
     setSize,
     getPriceBySizeMW,
+    getPriceBuyPromptMW,
 };

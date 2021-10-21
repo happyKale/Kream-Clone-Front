@@ -62,7 +62,7 @@ const Transection = () => {
 
     return (
         <React.Fragment>
-            <Header/>
+            {/* <Header/>
             <BackgroundBox>
                 <ContainerBox>
                     <StyledProductInfo>
@@ -198,7 +198,7 @@ const Transection = () => {
                         계속</Button>
                         </StyledResult>
                 </ContainerBox>
-            </BackgroundBox>
+            </BackgroundBox> */}
         </React.Fragment>
     )
 }

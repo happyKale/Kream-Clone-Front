@@ -17,9 +17,8 @@ const instance = axios.create({
 });
 
 export const apis = {
-  // 상품 아이디로 상품 정보 불러오기 loadProductByIdAX: (productId) =>
-  // instance.get(`/product/${productId}`),
-  loadProductByIdAX: (productId) => instance.get(`/product`),
+  // 상품 아이디로 상품 정보 불러오기
+  loadProductByIdAX: (productId) => instance.get(`/product/${productId}`),
 
   //회원가입
   createAccountAX: (user) => instance.post("/user/signup", user),
@@ -34,10 +33,12 @@ export const apis = {
   transectionAX: (productid, list) =>
     instance.post(`/order/transaction/${productid}`, list),
   // 사이즈별 가격 조회
-  getPriceBySizeAX: (productId, size) => instance.get(`/priceBySize`),
+  getPriceBySizeAX: (productId, size) =>
+    instance.get(`/product/size/${productId}?size=${size}`),
 
-  // 최저/최고가 조회
-  getPriceBestAX: (productId, role) => instance.get(`/priceBest`),
+  // 모든 사이즈 즉시 구매가 조회
+  getPricePromptBuyAX: (productId) =>
+    instance.get(`/product/sizeall/${productId}`),
 
   //전체 post 조회
   getProductsAX: () => instance.get("/"),
@@ -46,5 +47,6 @@ export const apis = {
   getMyPageDataAX: () => instance.get("/mypage"),
 
   //북마크하기
-  setBookmarkAX: (productIdx) => instance.post("/user/bookmark", productIdx),
+  setBookmarkAX: ({ productId, bookmark }) =>
+    instance.post("/user/bookmark", { productId, bookmark }),
 };

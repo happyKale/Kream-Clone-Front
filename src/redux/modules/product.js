@@ -24,18 +24,7 @@ const loadProductById = createAction(LOAD_PRODUCT_BY_ID, (product) => ({
 
 // initialState
 const initialState = {
-  list: [
-    {
-        bookmark: true,
-        brand: "Nike",
-        image: "이미지",
-        modelName: "Nike Dunk Low Retro Championship Goldenrod",
-        msg: "메인 페이지 로딩 성공",
-        price: "166,000",
-        productId: "제품 아이디1",
-        statusCode: 200
-    }
-  ],
+  list: [],
   product: null,
 };
 
@@ -43,17 +32,18 @@ const initialState = {
 const loadProductByIdMW = (productId) => {
   return function (dispatch, getState, { history }) {
     apis
-      // .loadProductByIdAX(productId)
-      .loadProductByIdAX()
+      .loadProductByIdAX(productId)
       .then((response) => {
-        // console.log(response);
-        console.log(response.data);
-        // console.log(productId.productId);
-        // 서버 연결되면 한 개의 product만 가져올 수 있도록 수정 필요
-        const product = response.data[productId.productId];
+        const product = response.data;
+        // console.log(product);
         dispatch(loadProductById(product));
+      })
+      .catch((error) => {
+        window.alert("상품 정보를 불러오는데 실패하였습니다.");
+        console.log(error);
+        // history.push("/");
+        history.goBack();
       });
-    // catch문 추가 필요
   };
 };
 
@@ -75,32 +65,33 @@ const getProductsMW = () => {
 // 북마크
 // page는 북마크를 실행하는 페이지의 종류에 따라 "main", "detail"로 값을 받을 수 있다.
 // 메인 페이지는 "main", 상세페이지는 "detail"로 설정한다.
-const setBookmarkMW = (productId, bookmark, page) => {
+const setBookmarkMW = (id, bookmark, page) => {
   return function (dispatch, getState, { history }) {
-    const productList = getState().product.list;
-    const idx = productList.findIndex((item) => item.productId === productId);
+    const productList = getState().product.list.productList;
+    console.log("북마크 미들웨어에서 데이터: ", productList);
+    const idx = productList?.findIndex((item) => item.id === id);
     dispatch(setBookmark(idx, page));
-    // apis
-    //   .setBookmarkAX({
-    //     productId: productId,
-    //     bookmark: bookmark,
-    //   })
-    //   .then((res) => {
-    //     console.log("[Main] bookmark response data:::", res.data);
-    //     // 북마크 요청이 잘 완료됨
-    //     if (res.data.statusCode === 200) {
-    //       dispatch(setBookmark(idx, page));
-    //       //디테일 페이지라면 bookmarkCnt에 response로 넘어온 북마크 개수 넣기
-    //       if (page === "detail") {
-    //         dispatch(setBookmarkCnt(res.data.bookmarkCnt));
-    //       }
-    //     } else if (res.data.statusCode === 500) {
-    //       window.alert("상품을 찾을 수 없습니다.");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    apis
+      .setBookmarkAX({
+        productId: id,
+        bookmark: bookmark,
+      })
+      .then((res) => {
+        console.log("[Main] bookmark response data:::", res.data);
+        // 북마크 요청이 잘 완료됨
+        if (res.data.statusCode === 200) {
+          dispatch(setBookmark(idx, page));
+          //디테일 페이지라면 bookmarkCnt에 response로 넘어온 북마크 개수 넣기
+          if (page === "detail") {
+            dispatch(setBookmarkCnt(res.data.bookmarkCnt));
+          }
+        } else if (res.data.statusCode === 500) {
+          window.alert("상품을 찾을 수 없습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
@@ -116,17 +107,17 @@ export default handleActions(
         // 메인페이지에서 북마크 한 경우
         if (action.payload.page === "main") {
           const index = action.payload.productIdx;
-          if (draft.list[index].bookmark === true) {
-            draft.list[index].bookmark = false;
+          if (draft.list.productList[index].bookMark === true) {
+            draft.list.productList[index].bookMark = false;
           } else {
-            draft.list[index].bookmark = true;
+            draft.list.productList[index].bookMark = true;
           }
         } else {
           // 상세페이지에서 북마크 한 경우
           if (draft.product.bookmark === true) {
-            draft.product.bookmark = false;
+            draft.product.bookMark = false;
           } else {
-            draft.product.bookmark = true;
+            draft.product.bookMark = true;
           }
         }
       }),
@@ -136,10 +127,7 @@ export default handleActions(
       }),
     [LOAD_PRODUCT_BY_ID]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("loadProductByIdMW 연결!")
-        // draft.post = action.payload.post;
         draft.product = action.payload.product;
-        // console.log(action.payload.product);
       }),
   },
   initialState

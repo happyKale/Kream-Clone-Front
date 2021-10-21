@@ -1,22 +1,55 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/store";
 import { Grid, Text, Image } from "../elements";
+import { useDispatch } from "react-redux";
+import { actionCreators as productActions } from "../redux/modules/product";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
+  const id = props.product.id;
+  const bookmark = props.product.bookMark;
+
+  const bookmarkChecked = {
+    backgroundColor: "red",
+  };
+
   return (
     <React.Fragment>
-      <Grid
-        // border="1px solid black"
-        width="100%"
-        padding="0px 12px"
-        margin="20px 0px"
-      >
+      <Grid width="100%" padding="0px 12px" margin="20px 0px" cursor="pointer">
+        <Bookmark>
+          <Grid
+            margin="0px"
+            width="34px"
+            height="37px"
+            onClick={() => {
+              dispatch(productActions.setBookmarkMW(id, bookmark, "main"));
+            }}
+          >
+            <Text
+              align="center"
+              margin="auto"
+              width="auto"
+              padding="0px"
+              fontSize="20px"
+            >
+              {bookmark ? (
+                <i className="fas fa-bookmark"></i>
+              ) : (
+                <i className="far fa-bookmark"></i>
+              )}
+            </Text>
+          </Grid>
+        </Bookmark>
         {/* 이미지 */}
         <Grid
           height="20vw"
           maxHeight="276px"
           backgroundColor="#EBF0F5"
           borderRadius="10px"
+          onClick={() => {
+            history.push(`detail/${id}`);
+          }}
         >
           <Image
             borderRadius="13px"
@@ -24,10 +57,13 @@ const Card = (props) => {
             src={props.product.image}
           ></Image>
         </Grid>
-        {/* 북마크 */}
-
         {/* 제품정보 */}
-        <Grid margin="9px 0px">
+        <Grid
+          margin="9px 0px"
+          onClick={() => {
+            history.push(`detail/${id}`);
+          }}
+        >
           <Grid>
             <Text
               width="auto"
@@ -67,5 +103,15 @@ const Card = (props) => {
     </React.Fragment>
   );
 };
+
+const Bookmark = styled.div`
+  width: auto;
+  position: relative;
+  top: 0px;
+  right: 0px;
+  height: auto;
+  margin: 5px;
+  float: right;
+`;
 
 export default Card;

@@ -26,6 +26,8 @@ const Grid = (props) => {
     justifyContents,
     flexDirection,
     alignItems,
+    cursor,
+    position,
   } = props;
   const styles = {
     width: width,
@@ -49,6 +51,8 @@ const Grid = (props) => {
     justifyContents: justifyContents,
     flexDirection: flexDirection,
     alignItems: alignItems,
+    cursor: cursor,
+    position: position,
   };
 
   return (
@@ -82,6 +86,8 @@ Grid.defaultProps = {
   justifyContents: null,
   flexDirection: null,
   alignItems: null,
+  cursor: null,
+  position: null,
   onClick: () => {},
 };
 
@@ -107,6 +113,8 @@ const StyledGrid = styled.div`
   justify-content: ${(props) => props.justifyContents};
   flex-direction: ${(props) => props.flexDirection};
   align-items: ${(props) => props.alignItems};
+  cursor: ${(props) => props.cursor};
+  position: ${(props) => props.position};
 `;
 
 export default Grid;
