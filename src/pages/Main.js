@@ -17,21 +17,6 @@ const Main = () => {
     dispatch(productActions.getProductsMW());
   }, []);
 
-  const bookmarkStyle = {
-    border: "1px solid black",
-    width: "50px",
-    height: "30px",
-    margin: "5px",
-  };
-
-  const bookmarkChecked = {
-    border: "1px solid black",
-    width: "50px",
-    height: "30px",
-    margin: "0px",
-    backgroundColor: "red",
-  };
-
   const StyledButton = styled.button`
     margin: 20px auto 0px;
     height: 40px;
@@ -75,7 +60,7 @@ const Main = () => {
         margin="0px"
         backgroundColor="#fff"
         padding="0px 28px"
-        height="100%"
+        height="auto"
       >
         <Grid
           maxWidth="1280px"
@@ -88,11 +73,7 @@ const Main = () => {
           {/* 상품 리스트를 감싸는 컨테이너 */}
           {productList &&
             productList.map((product) => {
-              const productId = product.productId;
-              const bookmark = product.bookmark;
-              // 북마크가 되어있으면 스타일이 bookmarkChecked로 바뀜
-              const style = bookmark ? bookmarkChecked : bookmarkStyle;
-              return <Card product={product}></Card>;
+              return <Card key={product.id} product={product}></Card>;
             })}
         </Grid>
       </Grid>

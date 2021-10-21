@@ -1,195 +1,373 @@
 import React from "react";
-import { history } from "../redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as mypageActions } from "../redux/modules/mypage";
+import {history} from "../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {actionCreators as mypageActions} from "../redux/modules/mypage";
+import Header from "../components/Header";
+import { style } from "dom-helpers";
+import styled from "styled-components";
 
 const MyPage = () => {
-  const dispatch = useDispatch();
-  const dataList = useSelector((state) => state.mypage.list[0]);
-  const buyList = dataList?.buyList;
-  const sellList = dataList?.sellList;
-  const bookMarkList = dataList?.bookMarkList;
+    const dispatch = useDispatch();
+    const dataList = useSelector((state) => state.mypage.list[0]);
+    const buyList = dataList
+        ?.buyList;
+    const sellList = dataList
+        ?.sellList;
+    const bookMarkList = dataList
+        ?.bookMarkList;
 
-  let completedBuyNum = buyList?.filter(
-    (item) => item.transactionStatus === "completed"
-  ).length;
-  let completedSellNum = sellList?.filter(
-    (item) => item.transactionStatus === "completed"
-  ).length;
+    //테스트
+    // const buyList = [
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
+    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" }
+    // ]
 
-  React.useEffect(() => {
-    dispatch(mypageActions.getDataMW());
-  }, []);
-  console.log("sellList: ", sellList);
+    let completedBuyNum = buyList?.filter((item) => item.transactionStatus === "completed").length;
+    let completedSellNum = sellList?.filter((item) => item.transactionStatus === "completed").length;
 
-  const containerStyle = {
-    border: "1px solid black",
-    width: "1000px",
-    height: "500px",
-    margin: "0px 0px 30px 0px",
-  };
+    React.useEffect(() => {
+        dispatch(mypageActions.getDataMW());
+    }, []);
+    console.log("sellList: ", sellList);
 
-  const productStyle = {
-    border: "1px solid black",
-    width: "280px",
-    height: "400px",
-    float: "left",
-  };
+    return (
+        <React.Fragment>
+          <Header/>
+            <StyledMypageBox>
+              <h1>마이페이지</h1>
+              <StyledContainer>
+                <UserProfile>
+                    <img src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg" alt=""/>
+                    <div>
+                        <p>닉네임</p>
+                        <p>아이디(이메일)</p>
+                    </div>
+                </UserProfile>
+                <History>
+                    <h1>구매 내역</h1>
+                    <Total>
+                        <div>
+                            <p>전체</p>
+                            <p className="buy">{ buyList ?.length }</p>
+                        </div>
+                        <span/>
+                        <div>
+                            <p>종료</p>
+                            <p >{completedBuyNum}</p>
+                        </div>
+                    </Total>
+                    <Tabel>
+                        {buyList?
+                          <table>
+                            <thead>
+                                <tr>
+                                    <th key={1}>상품명</th>
+                                    <th key={2}>거래가</th>
+                                    <th key={3}>입찰/즉시구매</th>
+                                    <th key={4}>종료여부</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                     buyList.map((item) => {
+                                        let status = item.transactionStatus;
+                                        let type = item.purchaseType;
+                                        status === "completed"
+                                            ? (status = "종료")
+                                            : (status = "진행중");
+                                        type === "bidding"
+                                            ? (type = "입찰")
+                                            : (type = "즉시구매");
 
-  const productImgStyle = {
-    border: "1px solid black",
-    width: "200px",
-    height: "200px",
-    margin: "auto",
-  };
+                                        return (
+                                            <tr>
+                                                <td>{
+                                                        item
+                                                            .modelName
+                                                            .split(";")[0]
+                                                    }</td>
+                                                <td>{item.transactionPrice}원</td>
+                                                <td>{type}</td>
+                                                <td>{status}</td>
+                                            </tr>
+                                        );
+                                    })
+                                }
+                            </tbody>
+                        </table> : "거래내역이 없습니다."}
+                    </Tabel>
+                </History>
+                <History>
+                    <h1>판매 내역</h1>
+                    <Total>
+                        <div>
+                          <p>전체</p> 
+                          <p className="sell">{
+                                sellList
+                                    ?.length
+                            }</p>
+                            </div>
+                            <span/>
+                        <div><p>종료</p> <p >{completedSellNum}</p></div>
+                    </Total>
+                    <Tabel>
+                        {sellList?
+                          <table>
+                            <thead>
+                                <tr>
+                                    <th key={1}>상품명</th>
+                                    <th key={2}>거래가</th>
+                                    <th key={3}>입찰/즉시구매</th>
+                                    <th key={4}>종료여부</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                     sellList.map((item) => {
+                                        let status = item.transactionStatus;
+                                        let type = item.purchaseType;
+                                        status === "completed"
+                                            ? (status = "종료")
+                                            : (status = "진행중");
+                                        type === "bidding"
+                                            ? (type = "입찰")
+                                            : (type = "즉시구매");
 
-  const tableStyle = {
-    border: "1px solid black",
-    "border-collapse": "collapse",
-  };
-
-  return (
-    <React.Fragment>
-      <div>
-        여기가 마이페이지
-        {/* 사용자 정보 */}
-        <div style={containerStyle}>
-          {/* 이미지 */}
-          <div>이미지</div>
-          {/* 닉네임 & 아이디(이메일) */}
-          <div>
-            <p>닉네임</p>
-            <p>아이디(이메일)</p>
-          </div>
-        </div>
-        {/* 구매내역 */}
-        <div style={containerStyle}>
-          <p>구매 내역</p>
-          {/* 구매 내역 카운트 표시 */}
-          <div>
-            {/* 전체 & 종료 */}
-            <div>전체 {buyList?.length}</div>
-            <div>종료 {completedBuyNum}</div>
-          </div>
-          {/* 구매 내역 리스트 */}
-          <div>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th key={1}>상품명</th>
-                  <th key={2}>거래가</th>
-                  <th key={3}>입찰/즉시구매</th>
-                  <th key={4}>종료여부</th>
-                </tr>
-              </thead>
-              <tbody>
-                {buyList &&
-                  buyList.map((item) => {
-                    let status = item.transactionStatus;
-                    let type = item.purchaseType;
-                    status === "completed"
-                      ? (status = "종료")
-                      : (status = "진행중");
-                    type === "bidding" ? (type = "입찰") : (type = "즉시구매");
-
-                    return (
-                      <tr>
-                        <td>{item.modelName.split(";")[0]}</td>
-                        <td>{item.transactionPrice}원</td>
-                        <td>{type}</td>
-                        <td>{status}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        {/* 판매내역 */}
-        <div style={containerStyle}>
-          <p>판매 내역</p>
-          {/* 판매 내역 카운트 표시 */}
-          <div>
-            {/* 전체 & 종료 */}
-            <div>전체 {sellList?.length}</div>
-            <div>종료 {completedSellNum}</div>
-          </div>
-          {/* 판매 내역 리스트 */}
-          <div>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th key={1}>상품명</th>
-                  <th key={2}>거래가</th>
-                  <th key={3}>입찰/즉시구매</th>
-                  <th key={4}>종료여부</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sellList &&
-                  sellList.map((item) => {
-                    let status = item.transactionStatus;
-                    let type = item.purchaseType;
-                    status === "completed"
-                      ? (status = "종료")
-                      : (status = "진행중");
-                    type === "bidding" ? (type = "입찰") : (type = "즉시구매");
-
-                    return (
-                      <tr>
-                        <td>{item.modelName.split(";")[0]}</td>
-                        <td>{item.transactionPrice}원</td>
-                        <td>{type}</td>
-                        <td>{status}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        {/* 관심상품 */}
-        <div style={containerStyle}>
-          <p>관심 상품</p>
-          {/* 신발카드 */}
-          {/* 메인페이지에서 썼던 map을 고대로 가져오면 될 듯~! */}
-          {bookMarkList &&
-            bookMarkList.map((product) => {
-              return (
-                <div key={product.modelName} style={productStyle}>
-                  {/* 상품 하나 */}
-                  <div style={productImgStyle}>
-                    {/* 상품 이미지 */}
-                    <img
-                      src={product.image}
-                      alt={product.modelName.split(";")[0]}
-                      width="200"
-                      height="200"
-                    />
-                  </div>
-                  <div>
-                    {/* 상품 정보 */}
-                    <p>
-                      {/* 상품 브랜드 */}
-                      {product.brand}
-                    </p>
-                    <p>
-                      {/* 상품명 */}
-                      {/* 말줄임 */}
-                      {product.modelName.split(";")[0]}
-                    </p>
-                    <p>
-                      {/* 상품가격 */}
-                      {product.price}원
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-    </React.Fragment>
-  );
+                                        return (
+                                            <tr>
+                                                <td>{
+                                                        item
+                                                            .modelName
+                                                            .split(";")[0]
+                                                    }</td>
+                                                <td>{item.transactionPrice}원</td>
+                                                <td>{type}</td>
+                                                <td>{status}</td>
+                                            </tr>
+                                        );
+                                    }) 
+                                }
+                            </tbody>
+                        </table>: "거래내역이 없습니다."}
+                    </Tabel>
+                </History>
+                <BookmarkContainer>
+                    <h1>관심 상품</h1>
+                    {
+                        bookMarkList ? bookMarkList.map((product) => {
+                            return (
+                                <div key={product.modelName}>
+                                    <div>
+                                        <img
+                                            src={product.image}
+                                            alt={product
+                                                .modelName
+                                                .split(";")[0]}
+                                            width="200"
+                                            height="200"/>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            {product.brand}
+                                        </p>
+                                        <p>
+                                            {
+                                                product
+                                                    .modelName
+                                                    .split(";")[0]
+                                            }
+                                        </p>
+                                        <p>
+                                            {product.price}원
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        }): <div className="emptyBookmark"><p>추가하신 관심 상품이 없습니다.</p></div>
+                    }
+                </BookmarkContainer>
+                </StyledContainer>
+            </StyledMypageBox>
+        </React.Fragment>
+    );
 };
+
+const StyledMypageBox = styled.article`
+display: flex;
+max-width: 1280px;
+margin: 0 auto;
+padding: 40px 40px 160px;
+gap:20px;
+
+& > h1 {
+    line-height: 29px;
+    padding-bottom: 30px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.15px;
+    width: 180px;
+}
+`
+
+const StyledContainer = styled.section`
+  overflow: hidden;
+  min-height: 380px;
+  width: 100%;
+`
+
+const UserProfile = styled.section`
+display: flex;
+gap:12px;
+padding: 30px 32px 22px;
+border: 1px solid #ebebeb;
+    border-radius: 10px;
+    background-color: #fff;
+img{
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(34,34,34,.05);
+  border-radius: 50%;
+}
+
+div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p:first-child{
+    line-height: 21px;
+    font-size: 18px;
+    letter-spacing: -.27px;
+    font-weight: 600;
+    color: #000;
+  }
+  p:last-child{
+    line-height: 18px;
+    font-size: 14px;
+    letter-spacing: -.05px;
+    color: rgba(34,34,34,.5);
+  }
+}
+`
+
+const History = styled.section`
+display: flex;
+flex-direction: column;
+margin-top:42px;
+
+& > h1 {
+  font-size: 18px;
+    letter-spacing: -.27px;
+    padding-bottom: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+`
+
+const Total = styled.section`
+    display: flex;
+    width: 100%;
+    background-color: #fafafa;
+    border-radius: 12px;
+    align-items: center;
+& > div {
+  width:50%;
+  text-align: center;
+  height: 96px;
+  padding-top: 18px;
+  p:first-child{
+    font-size: 13px;
+    letter-spacing: -.07px;
+    color: rgba(34,34,34,.8);
+  }
+  p:last-child{
+    color: #000;
+    margin-top: 2px;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -.09px;
+    font-weight: 700;
+  }
+  p.buy{
+    color: #f15746;
+  }
+  p.sell{
+    color:#31B46D;
+  }
+}
+& > span {
+    height: 78px;
+    width: 1px;
+    background-color: #ebebeb;
+}
+`
+
+const Tabel = styled.section`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+min-height: 177px;
+margin-top: 20px;
+
+table{
+  width: 100%;
+  
+}
+thead tr{
+  th{
+    width: 25%;
+    text-align: center;
+    padding: 10px 0;
+    color:rgba(0,0,0,.8);
+    border-bottom:2px solid #ECF0F4 ;
+    font-weight: 600;
+  }
+}
+
+td{
+  text-align: center;
+  padding: 10px 0;
+  color:rgba(0,0,0,.5);
+}
+
+
+`
+
+
+const BookmarkContainer = styled.section`
+
+margin-top: 42px;
+
+& > h1 {
+    font-size: 18px;
+    letter-spacing: -.27px;
+    padding-bottom: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 16px;
+}
+
+.emptyBookmark{
+  width: 100%;
+  padding: 80px 0;
+  background-color: #fafafa;
+  border-radius: 12px;
+
+  p{
+    font-size: 14px;
+    letter-spacing: -.21px;
+    color: rgba(34,34,34,.5);
+    text-align: center;
+  }
+}
+`
 
 export default MyPage;
