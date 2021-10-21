@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle `
 
 ${normalize};
 
-*{padding:0; margin:0;}
+*{padding:0; margin:0;box-sizing: border-box;}
 
 html{
     width: 100%;
@@ -26,6 +26,6 @@ html{
 #root{
     width: 100%;
     height: 100%;
-    
+    position: relative;
 }
 `

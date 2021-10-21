@@ -2,34 +2,104 @@
   "product": [
       {
           "brand": "Nike",
-          "modelName": "Nike Dunk Low Retro Championship Goldenrod",
-          "price": "166,000",
-          "image": "이미지",
+          "modelName": "Nike x Patta Air Max 1 Monarch",
+          "priceBuyNow": "240,000",
+          "image": "https://kream-phinf.pstatic.net/MjAyMTEwMDhfMzEg/MDAxNjMzNjg3MzA4NzE4.Y8Ne58IIRVZ51Ysnu4DgPGmStqSUi0Gn7lQ1f7fbnQog.o0WXGgUjLSAAJ_tZiLxh8FnzPzK0r1xdzQSUU4vZ4dMg.PNG/a_a77ddf3074464b2687f7736963c38c6f.png?type=l",
           "bookmark": true,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
           "productId": "0"
       },
       {
-          "brand": "Nike",
+          "brand": "Jordan",
           "modelName": "Nike Dunk Low Retro ",
-          "price": "106,000",
-          "image": "이미지",
+          "priceBuyNow": "1,714,000",
+          "image": "https://kream-phinf.pstatic.net/MjAyMTA3MzBfNTYg/MDAxNjI3NjI3OTg5ODM5.p-9pRcc3cQ_eaTl7UZdCmPJz8Astbjg2N6_HkEhLrHsg.ekjxXxJ-kcnoaZC6gCQH_-KBCUJORPTRC791UZ_C3ukg.PNG/p_e1ef5e002eda49adb7f5d0c8a41f798d.png?type=l",
           "bookmark": false,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
           "productId": "1"
       },
       {
-          "brand": "Nike",
-          "modelName": "Nike Championship Goldenrod XW",
-          "price": "666,000",
-          "image": "이미지",
+          "brand": "Jordan",
+          "modelName": "Jordan 1 Retro High OG Black Mocha",
+          "priceBuyNow": "695,000",
+          "image": "https://kream-phinf.pstatic.net/MjAyMDEwMjJfOCAg/MDAxNjAzMzQwOTUzNzMx.nCU7Bumo43r7JZcTRjq4blFOcj33dPIxNYW-_94RtWgg.rJwsoEL3W-f7pgpwfYISb-0HBItIWL04h7p8Ixyp8CUg.PNG/p_4cedd884b4a3427ca616bc31b3bf2867.png",
           "bookmark": true,
           "statusCode": 200,
           "msg": "메인 페이지 로딩 성공",
           "productId": "2"
-      }
+      },
+      {
+        "brand": "Nike",
+        "modelName": "(GS) Nike x NBA Dunk Low Chicago",
+        "priceBuyNow": "196,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMTA5MjdfMjcz/MDAxNjMyNzA5NDUyMjgy.JpUx9yERi-pjKiLN5O_nytkQGwbmgSWAhY01SJFU5u4g.i20pRuCeZIX0jl2maBPwbWH-xFd0uNhJtzLjYqDJHVMg.PNG/a_f7a122ac90e8465cb697e33e293c150f.png",
+        "bookmark": true,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "2"
+    },
+    {
+        "brand": "Nike",
+        "modelName": "(W) Nike Air Force 1 '07 LV8 Hangul Day",
+        "priceBuyNow": "145,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMTA5MTRfMjgx/MDAxNjMxNjA3NTU3MDI4.Q0VSPIn8KY2ggi4dgoLNuGE8ZNmerw_cIVq_T3d6uY8g.Lu2bA2eQOksYe29KOwsLipNvlmLtPxYdP9kgTDDlK4Mg.PNG/a_e014cc152aca4b43b468d7bc9dacef4f.png?type=l",
+        "bookmark": true,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "2"
+    },
+    {
+        "brand": "Nike",
+        "modelName": "Nike Dunk Low Retro Championship Goldenrod",
+        "priceBuyNow": "148,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMTEwMDZfOCAg/MDAxNjMzNDg2OTQxNTIw.xI0m-_I9z_Af8nkSOwTsILHaTAgy3-LjV4tZOksyKpAg.FKH8fB7ZZuGxX9iBE7Vwea0Glvu_Wau0mHjYeV7hxFkg.PNG/a_e14bba6b98ce4447852f5c5bae781e43.png?type=l",
+        "bookmark": true,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "2"
+    },
+    {
+        "brand": "Nike",
+        "modelName": "Nike x Patta Air Max 1 Monarch",
+        "priceBuyNow": "240,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMTEwMDhfMzEg/MDAxNjMzNjg3MzA4NzE4.Y8Ne58IIRVZ51Ysnu4DgPGmStqSUi0Gn7lQ1f7fbnQog.o0WXGgUjLSAAJ_tZiLxh8FnzPzK0r1xdzQSUU4vZ4dMg.PNG/a_a77ddf3074464b2687f7736963c38c6f.png?type=l",
+        "bookmark": true,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "0"
+    },
+    {
+        "brand": "Jordan",
+        "modelName": "Nike Dunk Low Retro ",
+        "priceBuyNow": "1,714,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMTA3MzBfNTYg/MDAxNjI3NjI3OTg5ODM5.p-9pRcc3cQ_eaTl7UZdCmPJz8Astbjg2N6_HkEhLrHsg.ekjxXxJ-kcnoaZC6gCQH_-KBCUJORPTRC791UZ_C3ukg.PNG/p_e1ef5e002eda49adb7f5d0c8a41f798d.png?type=l",
+        "bookmark": false,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "1"
+    },
+    {
+        "brand": "Jordan",
+        "modelName": "Jordan 1 Retro High OG Black Mocha",
+        "priceBuyNow": "695,000",
+        "image": "https://kream-phinf.pstatic.net/MjAyMDEwMjJfOCAg/MDAxNjAzMzQwOTUzNzMx.nCU7Bumo43r7JZcTRjq4blFOcj33dPIxNYW-_94RtWgg.rJwsoEL3W-f7pgpwfYISb-0HBItIWL04h7p8Ixyp8CUg.PNG/p_4cedd884b4a3427ca616bc31b3bf2867.png",
+        "bookmark": true,
+        "statusCode": 200,
+        "msg": "메인 페이지 로딩 성공",
+        "productId": "2"
+    },
+    {
+      "brand": "Nike",
+      "modelName": "(GS) Nike x NBA Dunk Low Chicago",
+      "priceBuyNow": "196,000",
+      "image": "https://kream-phinf.pstatic.net/MjAyMTA5MjdfMjcz/MDAxNjMyNzA5NDUyMjgy.JpUx9yERi-pjKiLN5O_nytkQGwbmgSWAhY01SJFU5u4g.i20pRuCeZIX0jl2maBPwbWH-xFd0uNhJtzLjYqDJHVMg.PNG/a_f7a122ac90e8465cb697e33e293c150f.png",
+      "bookmark": true,
+      "statusCode": 200,
+      "msg": "메인 페이지 로딩 성공",
+      "productId": "2"
+  }
   ],
   "mypage": [
       {
