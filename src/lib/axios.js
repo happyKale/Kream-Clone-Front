@@ -46,5 +46,6 @@ export const apis = {
   getMyPageDataAX: () => instance.get("/mypage"),
 
   //북마크하기
-  setBookmarkAX: (productIdx) => instance.post("/user/bookmark", productIdx),
+  setBookmarkAX: ({ productId, bookmark }) =>
+    instance.post("/user/bookmark", { productId, bookmark }),
 };
