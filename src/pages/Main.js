@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.product.list);
+  const productList = useSelector((state) => state.product.list.productList);
   const is_login = useSelector((state) => state.user.is_login);
 
   React.useEffect(() => {

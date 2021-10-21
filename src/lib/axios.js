@@ -11,7 +11,7 @@ const instance = axios.create({
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
     Authorization: `Bearer ${cookies.get("X-AUTH-TOKEN")}`,
-    "X-AUTH-TOKEN":`${cookies.get("X-AUTH-TOKEN")}`
+    "X-AUTH-TOKEN": `${cookies.get("X-AUTH-TOKEN")}`,
   },
   withCredentials: true,
 });
@@ -40,7 +40,7 @@ export const apis = {
   getPriceBestAX: (productId, role) => instance.get(`/priceBest`),
 
   //전체 post 조회
-  getProductsAX: () => instance.get("/product"),
+  getProductsAX: () => instance.get("/"),
 
   //마이페이지 데이터 가져오기
   getMyPageDataAX: () => instance.get("/mypage"),
