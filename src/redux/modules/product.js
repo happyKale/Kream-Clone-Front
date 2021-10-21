@@ -62,9 +62,9 @@ const getProductsMW = () => {
     apis
       .getProductsAX()
       .then((res) => {
+        console.log("[Main] get product data:::", res.data);
         const productList = res.data;
         dispatch(getProducts(productList));
-        console.log("[Main] get product data:::", res.data);
       })
       .catch((err) => {
         console.log(err);

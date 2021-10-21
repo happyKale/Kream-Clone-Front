@@ -51,7 +51,7 @@ const Card = (props) => {
           </Text>
           <Grid margin="7px 0px 0px 0px">
             <Text fontSize="15px" margin="0px" padding="0px">
-              {props.product.priceBuyNow}원
+              {props.product.price}
             </Text>
             <Text
               margin="0px"
