@@ -1,12 +1,11 @@
 import axios from "axios";
-import {Cookies} from "react-cookie";
+import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
 
 const instance = axios.create({
-    // 기본적으로 우리가 바라볼 서버의 주소
-    // baseURL: "http://13.125.35.74:8080/",
-    baseURL: "http://localhost:4000",
+    baseURL: "http://13.125.223.180/",
+    // baseURL: "http://localhost:4000",
     headers: {
         "content-type": "application/json;charset=UTF-8",
         accept: "application/json",
@@ -18,7 +17,7 @@ const instance = axios.create({
 export const apis = {
     // 상품 아이디로 상품 정보 불러오기 loadProductByIdAX: (productId) =>
     // instance.get(`/product/${productId}`),
-    loadProductByIdAX: (productId) => instance.get(`/product`),
+    loadProductByIdAX: (productId) => instance.get(`/product/${productId}`),
 
     //회원가입
     createAccountAX: (user) => instance.post("/user/signup", user),
@@ -35,10 +34,10 @@ export const apis = {
         list
     ),
     // 사이즈별 가격 조회
-    getPriceBySizeAX: (productId, size) => instance.get(`/priceBySize`),
+    getPriceBySizeAX: (productId, size) => instance.get(`/product/size/${productId}?size=${size}`),
 
-    // 최저/최고가 조회
-    getPriceBestAX: (productId, role) => instance.get(`/priceBest`),
+    // 모든 사이즈 즉시 구매가 조회
+    getPricePromptBuyAX: (productId) => instance.get(`/product/sizeall/${productId}`),
 
     //전체 post 조회
     getProductsAX: () => instance.get("/product"),

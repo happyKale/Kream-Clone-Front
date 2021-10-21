@@ -30,8 +30,8 @@ const Main = () => {
 
   return (
     <React.Fragment>
-      
-      <Header/>
+
+      <Header />
       {/* 헤더 */}
       <div></div>
       {/* 슬라이드 베너 */}
@@ -42,7 +42,7 @@ const Main = () => {
         {productList &&
           productList.map((product) => {
             return (
-              <div key={product.productId} style={productStyle} onClick={()=>{history.push(`/detail/${product.productId}`)}}>
+              <div key={product.productId} style={productStyle} onClick={() => { history.push(`/detail/${product.productId}`) }}>
                 {/* 상품 하나 */}
                 <div style={productImgStyle}>{/* 상품 이미지 */}</div>
                 <div>
