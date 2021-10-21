@@ -50,12 +50,15 @@ const Detail = () => {
     React.useEffect(() => {
         // 상세페이지 정보 불러오기 MW dispatch (가격 관련 정보 제외) 
         dispatch(productActions.loadProductByIdMW(productId));
+    }, [productId]);
+
+    React.useEffect(() => {
         // 모든 사이즈 즉시 구매가 조회 MW dispatch 
         dispatch(sizeActions.getPriceBuyPromptMW(productId));
         // 단일 사이즈 가격 조회 MW dispatch (size를 인풋으로 받는)
         dispatch(sizeActions.getPriceBySizeMW(productId, size));
         // 북마크 갯수 조회 MW dispatch
-    }, [productId, size]);
+    }, [size]);
 
     return (
         <React.Fragment>
@@ -199,7 +202,6 @@ const Detail = () => {
                                         >
                                             <button
                                                 style={{
-                                                    display: "block",
                                                     fontSize: "16px",
                                                     lineHeight: "24px",
                                                     letterSpacing: "-0.21px",
