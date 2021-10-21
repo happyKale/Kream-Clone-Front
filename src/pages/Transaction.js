@@ -30,19 +30,28 @@ const Transection = () => {
         }
     }, 1000), [])
 
+    const Testlist = {
+        modelImage:"",
+        modelNum: "aaaa-001",
+        modelName: "aaaa;ㅁㅁㅁㅁ",
+        size:"270",
+        buyPrice:"100000",
+        sellPrice:"122000",
+    }
+
     const keepGoingButton = () => {
 
-        const list = {
-            // requestType: componentType, //sell or buy
-            // purchaseType: is_bidding
-            //     ? "bidding"
-            //     : "prompt", //bidding: 입찰, prompt:즉시거래
-            // priceExpected: is_bidding
-            //     ? inputValue
-            //     : productPrice.priceBuy, // 구매/판매 입찰가
-            // size: size
-        }
-        dispatch(transectionAction.productInfoMW(list))
+        // const list = {
+        //     requestType: componentType, //sell or buy
+        //     purchaseType: is_bidding
+        //         ? "bidding"
+        //         : "prompt", //bidding: 입찰, prompt:즉시거래
+        //     priceExpected: is_bidding
+        //         ? inputValue
+        //         : productPrice.priceBuy, // 구매/판매 입찰가
+        //     size: size
+        // }
+        // dispatch(transectionAction.productInfoMW(list))
 
     }
 
@@ -54,7 +63,7 @@ const Transection = () => {
     return (
         <React.Fragment>
             <Header/>
-            {/* <BackgroundBox>
+            <BackgroundBox>
                 <ContainerBox>
                     <StyledProductInfo>
                         <img src={product.image} width="100px" height="100px" alt="product"/>
@@ -189,7 +198,7 @@ const Transection = () => {
                         계속</Button>
                         </StyledResult>
                 </ContainerBox>
-            </BackgroundBox> */}
+            </BackgroundBox>
         </React.Fragment>
     )
 }
