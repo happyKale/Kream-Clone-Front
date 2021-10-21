@@ -45,19 +45,20 @@ const Signup = () => {
 
     const signupButton = () => {
         const user = {
-            username: userEmail,
-            password: userPW
+            username: String(userEmail),
+            password: String(userPW)
         }
         console.log("[Signup] user :::", user)
         apis
             .createAccountAX(user)
             .then((response) => {
-                console.log(response)
+                console.log('[Signup] response:::',response)
                 history.push('/login')
             })
             .catch((error) => {
                 console.log("[Signup error] createAccountAX :::", error)
             });
+        
     }
 
     return (

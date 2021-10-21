@@ -11,6 +11,7 @@ const instance = axios.create({
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
     Authorization: `Bearer ${cookies.get("X-AUTH-TOKEN")}`,
+    "X-AUTH-TOKEN":`${cookies.get("X-AUTH-TOKEN")}`
   },
   withCredentials: true,
 });

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Button = (props) => {
 
-    const {children, backgroundColor, disabled} = props;
+    const {children, backgroundColor, disabled, onClick} = props;
 
     const styles = {
         backgroundColor:backgroundColor,
@@ -11,7 +11,7 @@ const Button = (props) => {
 
     return (
         <React.Fragment>
-            <StyledButton {...styles} disabled={disabled}>{children}</StyledButton>
+            <StyledButton {...styles} disabled={disabled} onClick={onClick}>{children}</StyledButton>
         </React.Fragment>
     )
 }

@@ -52,8 +52,13 @@ const Login = () => {
         apis
             .loginAX(user)
             .then((response) => {
-                console.log("[Login now] response", response.data.token)
-                cookies.set("X-AUTH-TOKEN", response.data.token);
+                console.log("[Login now] response", response)
+                if(response.data.statusCode === "200"){
+                    cookies.set("X-AUTH-TOKEN", response.data.token);
+                    history.goBack();
+                }else{
+                    alert('이메일 또는 비밀번호를 확인해주세요.');
+                }
             })
             .catch((error) => {
                 console.log("[Login error] createAccountAX :::", error)

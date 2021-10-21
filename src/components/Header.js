@@ -1,9 +1,12 @@
 import React from "react";
 import styled, {keyframes} from "styled-components";
+import { Cookies } from "react-cookie";
 
 import {history} from "../redux/store";
 import {useSelector, useDispatch} from "react-redux";
 import {checkLogin} from "../redux/modules/user";
+
+
 
 const Header = () => {
 
@@ -12,6 +15,8 @@ const Header = () => {
     const title = useSelector(state => state.transaction.headerTitle);
 
     const [mobileMenu, setMobileMenu] = React.useState(false);
+
+    const cookies =  new Cookies();
 
     return (
         <React.Fragment>
@@ -23,7 +28,7 @@ const Header = () => {
                                 className={mobileMenu
                                     ? "on"
                                     : "off"}>
-                                <div  className="innerBox">
+                                <div className="innerBox">
                                     <div>
                                         <a href="/mypage" className="myPage">마이페이지</a>
                                         <a
@@ -31,12 +36,16 @@ const Header = () => {
                                             className="logout"
                                             onClick={() => {
                                                 dispatch(checkLogin(false))
+                                                cookies.remove('X-AUTH-TOKEN');
                                             }}>로그아웃</a>
                                     </div>
                                     <button
                                         onClick={() => {
                                             setMobileMenu(false)
-                                        }}><img src={process.env.PUBLIC_URL + "/img/closeButton.png"} alt="close button" width="16.71px"/></button>
+                                        }}><img
+                                        src={process.env.PUBLIC_URL + "/img/closeButton.png"}
+                                        alt="close button"
+                                        width="16.71px"/></button>
                                 </div>
                             </HeaderTop>
                         : <HeaderTop
@@ -60,17 +69,21 @@ const Header = () => {
                 <HeaderBottom>
 
                     <a href="/">
-                        <img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="로고" width="115.38px"/> {
-                            title !== null
-                                ? <h1>{title}</h1>
-                                : null
-                        }
+                        <img src={process.env.PUBLIC_URL + "/img/logo.png"} alt="로고" width="115.38px"/>
                     </a>
+                    {
+                        title !== null
+                            ? <h1>{title}</h1>
+                            : null
+                    }
 
                     <button
                         onClick={() => {
                             setMobileMenu(true)
-                        }}><img src={process.env.PUBLIC_URL + "/img/menuButton.png"} alt="menu button" width="18px"/></button>
+                        }}><img
+                        src={process.env.PUBLIC_URL + "/img/menuButton.png"}
+                        alt="menu button"
+                        width="18px"/></button>
 
                 </HeaderBottom>
             </StyledArticle>
@@ -197,6 +210,7 @@ const HeaderBottom = styled.section `
 width: 100%;
 padding: 0 40px;
 background: white;
+position: relative;
 a{
     display: block;
     width:120px;
@@ -205,6 +219,21 @@ a{
     align-items: center;
     width: fit-content;
 }
+
+h1 {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
 
 button{display:none;}
 
