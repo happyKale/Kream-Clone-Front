@@ -17,7 +17,7 @@ const Input = (props) => {
 Input.defaultProps = {
     type: "text",
     onChange: false,
-    placeholder: false,
+    placeholder: "",
 }
 
 const StyledInput = styled.input`

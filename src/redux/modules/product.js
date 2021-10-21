@@ -25,16 +25,16 @@ const loadProductById = createAction(LOAD_PRODUCT_BY_ID, (product) => ({
 // initialState
 const initialState = {
   list: [
-    // {
-    //     bookmark: true,
-    //     brand: "Nike",
-    //     image: "이미지",
-    //     modelName: "Nike Dunk Low Retro Championship Goldenrod",
-    //     msg: "메인 페이지 로딩 성공",
-    //     price: "166,000",
-    //     productId: "제품 아이디1",
-    //     statusCode: 200
-    // }
+    {
+        bookmark: true,
+        brand: "Nike",
+        image: "이미지",
+        modelName: "Nike Dunk Low Retro Championship Goldenrod",
+        msg: "메인 페이지 로딩 성공",
+        price: "166,000",
+        productId: "제품 아이디1",
+        statusCode: 200
+    }
   ],
   product: null,
 };
