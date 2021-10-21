@@ -15,6 +15,7 @@ const Transection = () => {
     const componentType = useSelector(state => state.transaction.componentType);
     const product = useSelector(state => state.product.product);
     const size = useSelector(state => state.size.size);
+    const priceBySize = useSelector(state => state.size.priceBySize);
 
     const TextList = componentType === "buy"
         ? "구매"
@@ -30,13 +31,14 @@ const Transection = () => {
         }
     }, 1000), [])
 
-    const Testlist = {
-        modelImage:"",
-        modelNum: "aaaa-001",
-        modelName: "aaaa;ㅁㅁㅁㅁ",
-        size:"270",
-        buyPrice:"100000",
-        sellPrice:"122000",
+    const SetList = {
+        modelImage:product.image,
+        modelNum: product.modelNumber,
+        modelNameEN: product.modelName.split(';')[0],
+        modelNameKO: product.modelName.split(';')[1],
+        size:size,
+        buyPrice:priceBySize.priceBuy === "구매 입찰"?"-":priceBySize.priceBuy,
+        sellPrice:priceBySize.priceSell === "판매 입찰"?"-":priceBySize.priceSell,
     }
 
     const keepGoingButton = () => {
@@ -52,34 +54,30 @@ const Transection = () => {
         //     size: size
         // }
         // dispatch(transectionAction.productInfoMW(list))
-
+        
     }
 
     React.useEffect(()=>{
-
+        console.log(product);
 
     },[])
 
     return (
         <React.Fragment>
-            {/* <Header/>
+            <Header/>
             <BackgroundBox>
                 <ContainerBox>
                     <StyledProductInfo>
-                        <img src={product.image} width="100px" height="100px" alt="product"/>
+                        <img src={SetList.modelImage} width="100px" height="100px" alt="product"/>
                         <div>
                             <p className="modelNum">{"모델 넘버"}</p>
                             <p className="modelNameEN">{
-                                    product
-                                        .modelName
-                                        .split(";")[0]
+                                    SetList.modelNameEN
                                 }</p>
                             <p className="modelNameKO">{
-                                    product
-                                        .modelName
-                                        .split(";")[1]
+                                    SetList.modelNameKO
                                 }모델 이름 한글</p>
-                            <p className="modelSize">{"size"}</p>
+                            <p className="modelSize">{SetList.size}</p>
                         </div>
                     </StyledProductInfo>
                     <span/>
@@ -87,12 +85,12 @@ const Transection = () => {
                         <section>
                             <div className="textBox">
                                 <p>즉시 구매가</p>
-                                <p>{productPrice.priceBuy}</p>
+                                <p>{SetList.buyPrice}</p>
                             </div>
                             <span/>
                             <div className="textBox">
                                 <p>즉시 판매가</p>
-                                <p>{productPrice.priceSell}</p>
+                                <p>{SetList.sellPrice}</p>
                             </div>
                         </section>
                         <StyleTypeButton>
@@ -140,7 +138,7 @@ const Transection = () => {
                                                 onChangeValue(e)
                                             }}/><span>원</span></label>
                                     : <p className="price">
-                                            <span>{productPrice.priceBuy}</span>원</p>
+                                            <span>{SetList.buyPrice}</span>원</p>
                             }
                         </div>
                         <span/>
@@ -183,7 +181,7 @@ const Transection = () => {
                         <p>{
                                 is_bidding
                                     ? inputValue
-                                    : productPrice.priceBuy
+                                    : SetList.buyPrice
                             }원</p>
                     </div>
                     <Button 
@@ -198,7 +196,7 @@ const Transection = () => {
                         계속</Button>
                         </StyledResult>
                 </ContainerBox>
-            </BackgroundBox> */}
+            </BackgroundBox>
         </React.Fragment>
     )
 }
@@ -402,6 +400,9 @@ font-size: 20px;
     overflow: visible;
     &::placeholder{
         color:#bcbcbc;
+    }
+    &:focus{
+        outline: none;
     }
 }
 
