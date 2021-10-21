@@ -32,17 +32,18 @@ const initialState = {
 const loadProductByIdMW = (productId) => {
   return function (dispatch, getState, { history }) {
     apis
-      // .loadProductByIdAX(productId)
       .loadProductByIdAX(productId)
       .then((response) => {
-        // console.log(response);
-        console.log(response.data);
-        // console.log(productId.productId);
-        // 서버 연결되면 한 개의 product만 가져올 수 있도록 수정 필요
-        const product = response.data[productId.productId];
+        const product = response.data;
+        // console.log(product);
         dispatch(loadProductById(product));
+      })
+      .catch((error) => {
+        window.alert("상품 정보를 불러오는데 실패하였습니다.");
+        console.log(error);
+        // history.push("/");
+        history.goBack();
       });
-    // catch문 추가 필요
   };
 };
 
@@ -126,10 +127,7 @@ export default handleActions(
       }),
     [LOAD_PRODUCT_BY_ID]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("loadProductByIdMW 연결!")
-        // draft.post = action.payload.post;
         draft.product = action.payload.product;
-        // console.log(action.payload.product);
       }),
   },
   initialState

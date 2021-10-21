@@ -63,17 +63,17 @@ const Transection = () => {
             <button onClick={button}>테스트버튼</button>
             <article>
                 <section>
-                    <img src={product.image} width="100px" height="100px" alt=""/>
+                    <img src={product?.image} width="100px" height="100px" alt=""/>
                     <div>
-                        <h1>{product.brand}</h1>
+                        <h1>{product?.brand}</h1>
                         <p>{
                                 product
-                                    .modelName
+                                    ?.modelName
                                     .split(";")[0]
                             }</p>
                         <p>{
                                 product
-                                    .modelName
+                                    ?.modelName
                                     .split(";")[1]
                             }</p>
                         <p>{size}</p>
@@ -82,17 +82,17 @@ const Transection = () => {
                 <section>
                     <div>
                         <p>즉시 구매가</p>
-                        <p>{productPrice.priceBuy}</p>
+                        <p>{productPrice?.priceBuy}</p>
                     </div>
                     <div>
                         <p>즉시 판매가</p>
-                        <p>{productPrice.priceSell}</p>
+                        <p>{productPrice?.priceSell}</p>
                     </div>
                     <div>
                         <button
                             onClick={() => {
                                 setBidding(true);
-                                dispatch(transectionAction.headerTitle("즉시 " + TextList + "하기"))
+                                dispatch(transectionAction?.headerTitle("즉시 " + TextList + "하기"))
                             }}>{
                                 componentType === "buy"
                                     ? "구매 입찰"
@@ -101,7 +101,7 @@ const Transection = () => {
                         <button
                             onClick={() => {
                                 setBidding(false);
-                                dispatch(transectionAction.headerTitle(TextList + " 입찰하기"))
+                                dispatch(transectionAction?.headerTitle(TextList + " 입찰하기"))
                             }}>{
                                 componentType === "buy"
                                     ? "즉시 구매"
@@ -164,7 +164,7 @@ const Transection = () => {
                     <h1>{
                             is_bidding
                                 ? inputValue
-                                : productPrice.priceBuy
+                                : productPrice?.priceBuy
                         }원</h1>
                 </section>
                 <button onClick={keepGoingButton}>{
