@@ -22,12 +22,9 @@ function App() {
     React.useEffect(() => {
         const cookies = new Cookies();
         const token = cookies.get("X-AUTH-TOKEN");
-
         console.log("token? :::", token);
         if (token === undefined) {
             dispatch(checkLogin(false));
-            history.push("/login");
-            console.log("token is undefined");
         } else if (token !== undefined) {
             apis
                 .loginCheckAX()
@@ -35,13 +32,8 @@ function App() {
                     console.log("[Login] response:::", res)
                     if (res.data.statusCode === "500") {
                         dispatch(checkLogin(false));
-                        history.push('/login');
-
                     } else if (res.data.statusCode === "200") {
                         dispatch(checkLogin(true));
-                        console.log("res:::", res);
-                        dispatch(checkLogin(true))
-                        history.push('/');
                     }
                 })
                 .catch((err) => {
@@ -52,11 +44,11 @@ function App() {
 
     return (
         <ConnectedRouter history={history}>
-            <Route path="/" exact="exact" component={Main}/>
-            <Route path="/login" exact="exact" component={Login}/>
-            <Route path="/signup" exact="exact" component={Signup}/>
+            <Route path="/" exact component={Main}/>
+            <Route path="/login" exact component={Login}/>
+            <Route path="/signup" exact component={Signup}/>
             <Route path="/transaction/:productID" exact component={Transection}/>
-            <Route path="/mypage" exact="exact" component={MyPage}/>
+            <Route path="/mypage" exact component={MyPage}/>
             <Route path="/detail/:productId" exact component={Detail}/>
         </ConnectedRouter>
     );
