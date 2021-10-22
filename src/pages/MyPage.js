@@ -326,17 +326,13 @@ margin-top: 42px;
     flex-wrap: wrap;
     margin: 0 -10px;
     
-    & > .sc-gKseQn.gkvtpu{
+    & > div{
         width: 25%;
 
-        .sc-fubCzh{
-            display: none;
-        }
-
-        div:nth-child(2){
-            position: relative;
+        & > div:first-child {
             height: 0;
-            padding-top: 100%;
+            padding-top:100% ;
+            position: relative;
             div{
                 position: absolute;
                 top: 50%;
@@ -345,22 +341,11 @@ margin-top: 42px;
                 width: 81.5%;
             }
         }
-        div:nth-child(3){
-            div:first-child{
-                height: 17px;
-                display: flex;
-                & > p{
-                height: 14px;
-                line-height: 14px;
-                }
-            }
-            div:nth-child(3){
-                p:last-child{
-                    font-size: 11px;
-                }
-            }
-            
+        & > div:last-child{
+            padding: 0;
         }
+
+        
     }
 }
 
