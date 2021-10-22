@@ -33,7 +33,9 @@ const Detail = () => {
     const size = useSelector((state) => state.size.size);
     const priceBySize = useSelector((state) => state.size.priceBySize);
     const bookmark = productList?.productList?.find((item) => item.id == productId)?.bookMark;
+    const isLogin = useSelector((state) => state.user.is_login);
 
+    console.log("isLogin", isLogin);
     // console.log("productList", productList);
     // console.log("북마크여부", bookmark);
     // console.log("productId", productId);
@@ -42,12 +44,15 @@ const Detail = () => {
 
     const [modalShow, setModalShow] = React.useState(false);
 
-
-
     const toTransactionBuy = () => {
         if (size === null) {
             window.alert("사이즈를 선택하세요.");
-        } else {
+        }
+        else if (isLogin == false) {
+            window.alert("로그인이 필요합니다.");
+            history.push("/login");
+        }
+        else {
             history.push(`/transaction/${product.productId}`);
             dispatch(saveTypeActions.componentType("buy"));
         }
@@ -56,11 +61,27 @@ const Detail = () => {
     const toTransactionSell = () => {
         if (size === null) {
             window.alert("사이즈를 선택하세요.");
-        } else {
+        }
+        else if (isLogin === false) {
+            window.alert("로그인이 필요합니다.");
+            history.push("/login");
+        }
+        else {
             history.push(`/transaction/${product.productId}`);
             dispatch(saveTypeActions.componentType("sell"));
         }
     };
+
+    const addBookmark = () => {
+        if (isLogin === false) {
+            window.alert("로그인이 필요합니다.");
+            history.push("/login");
+        }
+        else {
+            dispatch(productActions.setBookmarkMW(productId, bookmark, "detail"));
+        }
+    }
+
 
     React.useEffect(() => {
         // 상세페이지 정보 불러오기 MW dispatch (가격 관련 정보 제외)
@@ -435,9 +456,10 @@ const Detail = () => {
                                             color: "#333",
                                             marginTop: "12px",
                                         }}
-                                        onClick={() => {
-                                            dispatch(productActions.setBookmarkMW(productId, bookmark, "detail"));
-                                        }}
+                                        // onClick={() => {
+                                        //     dispatch(productActions.setBookmarkMW(productId, bookmark, "detail"));
+                                        // }}
+                                        onClick={addBookmark}
                                     >
 
                                         <span>
