@@ -25,7 +25,7 @@ const Card = (props) => {
   return (
     <React.Fragment>
       <Grid width="100%" padding="0px 12px" margin="20px 0px" cursor="pointer">
-        {mypage? <Bookmark>
+        {!mypage? <Bookmark>
           <Grid
             margin="0px"
             width="34px"
