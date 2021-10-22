@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import { history } from "../redux/store";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 import { Grid, Text, Image } from "../elements";
@@ -41,6 +42,47 @@ console.log("[main] product list:::",productList);
 
   return (
     <React.Fragment>
+                  <Helmet>
+                <title>KREAM clone coding</title>
+                <meta name="title" content="KREAM clone coding" data-react-helmet="true"/>
+                <meta name="description" content="항해 99 3기 KREAM 클론코딩" data-react-helmet="true"/>
+
+                <meta property="og:type" content="website" data-react-helmet="true"/>
+                <meta
+                    property="og:url"
+                    content="http://kream-clone-coding.s3-website.ap-northeast-2.amazonaws.com/"
+                    data-react-helmet="true"/>
+                <meta
+                    property="og:title"
+                    content="KREAM clone coding"
+                    data-react-helmet="true"/>
+                <meta
+                    property="og:description"
+                    content="항해 99 3기 KREAM 클론코딩"
+                    data-react-helmet="true"/>
+                <meta property="og:image" content="./Frame 1.png"/>
+
+                <meta
+                    property="twitter:card"
+                    content="summary_large_image"
+                    data-react-helmet="true"/>
+                <meta
+                    property="twitter:url"
+                    content="http://kream-clone-coding.s3-website.ap-northeast-2.amazonaws.com/"
+                    data-react-helmet="true"/>
+                <meta
+                    property="twitter:title"
+                    content="KREAM clone coding"
+                    data-react-helmet="true"/>
+                <meta
+                    property="twitter:description"
+                    content="항해 99 3기 KREAM 클론코딩"
+                    data-react-helmet="true"/>
+                <meta
+                    property="twitter:image"
+                    content="./Frame 1.png"
+                    data-react-helmet="true"/>
+            </Helmet>
       <Header />
       {/* 슬라이드 베너 */}
       <SliderSection>
