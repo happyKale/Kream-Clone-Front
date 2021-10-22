@@ -745,6 +745,44 @@ const Detail = () => {
                                 </div>
 
                             </div>
+
+                            {/* banner_box */}
+                            <div
+                                style={{
+                                    position: "relative",
+                                    paddingTop: "20px,"
+                                }}
+                            >
+                                {/* slick-list */}
+                                <div
+                                    style={{
+                                        height: "80px",
+                                        display: "block"
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            width: "100%",
+                                            display: "inline-block",
+                                            position: "relative",
+                                            verticalAlign: "top",
+                                        }}
+                                    >
+                                        <img
+                                            src="https://kream-phinf.pstatic.net/MjAyMTEwMTVfMjU0/MDAxNjM0Mjg3NDU1Nzkx.sBYqARVbST8_M1dmbo9KnCN5U7U7HYc_GB5XPjBxviAg.Od5719O0kOa9alanXkpwdBsARNGj0xvVIROafy97dgMg.JPEG/a_a0269ef97b51427f8b6cf0fb487faf44.jpg"
+                                            alt=""
+                                            style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                verticalAlign: "top",
+                                            }}
+                                        >
+                                        </img>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
