@@ -22,28 +22,27 @@ import { actionCreators as saveTypeActions } from "../redux/modules/transaction"
 // Components-related
 import MyVerticallyCenteredModal from "../components/MyVerticallyCenteredModal";
 import Text from "../elements/Text";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Detail = () => {
     const dispatch = useDispatch();
     const productId = useParams().productId;
+    const productList = useSelector((state) => state.product.list);
     const product = useSelector((state) => state.product.product);
     const size = useSelector((state) => state.size.size);
     const priceBySize = useSelector((state) => state.size.priceBySize);
+    const bookmark = productList?.productList?.find((item) => item.id == productId)?.bookMark;
 
-    console.log("productId", productId);
-    console.log("size", size);
-    console.log("priceBySize", priceBySize);
+    // console.log("productList", productList);
+    // console.log("북마크여부", bookmark);
+    // console.log("productId", productId);
+    // console.log("size", size);
+    // console.log("priceBySize", priceBySize);
 
-    const [isBookmarked, setIsBookmarked] = React.useState(false);
     const [modalShow, setModalShow] = React.useState(false);
 
-    const toggleBookmark = (e) => {
-        if (isBookmarked === false) {
-            setIsBookmarked(true);
-        } else {
-            setIsBookmarked(false);
-        }
-    };
+
 
     const toTransactionBuy = () => {
         if (size === null) {
@@ -73,11 +72,11 @@ const Detail = () => {
         dispatch(sizeActions.getPriceBuyPromptMW(productId));
         // 단일 사이즈 가격 조회 MW dispatch (size를 인풋으로 받는)
         dispatch(sizeActions.getPriceBySizeMW(productId, size));
-        // 북마크 갯수 조회 MW dispatch
     }, [size]);
 
     return (
         <React.Fragment>
+            <Header />
             <div
                 className="content"
                 style={{
@@ -436,9 +435,13 @@ const Detail = () => {
                                             color: "#333",
                                             marginTop: "12px",
                                         }}
+                                        onClick={() => {
+                                            dispatch(productActions.setBookmarkMW(productId, bookmark, "detail"));
+                                        }}
                                     >
-                                        <span onClick={toggleBookmark}>
-                                            {isBookmarked ? (
+
+                                        <span>
+                                            {bookmark ? (
                                                 <FontAwesomeIcon icon={fasBookmark} />
                                             ) : (
                                                 <FontAwesomeIcon icon={farBookmark} />
@@ -762,6 +765,7 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </React.Fragment>
     );
 };

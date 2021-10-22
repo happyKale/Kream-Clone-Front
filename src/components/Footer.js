@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image } from "../elements";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram as fabInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook as fabFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faSms as fasSMS } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = (props) => {
   return (
@@ -131,8 +135,37 @@ const Footer = (props) => {
                 개인정보처리방침
               </Text>
             </Grid>
-            <Grid display="inline-block" width="auto">
-              sns 아이콘
+            <Grid display="flex" width="auto">
+              {/* SNS Box */}
+              <Grid display="inline-block">
+                <FontAwesomeIcon
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                  }}
+                  icon={fabInstagram}
+                />
+              </Grid>
+              <Grid display="inline-block">
+                <FontAwesomeIcon
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    marginLeft: "20px",
+                  }}
+                  icon={fabFacebook}
+                />
+              </Grid>
+              <Grid display="inline-block">
+                <FontAwesomeIcon
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    marginLeft: "20px",
+                  }}
+                  icon={fasSMS}
+                />
+              </Grid>
             </Grid>
           </Grid>
           <Grid

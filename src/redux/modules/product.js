@@ -19,12 +19,15 @@ const setBookmark = createAction(
     page,
   })
 );
+
 const setBookmarkCnt = createAction(SET_BOOKMARKCNT, (bookmarkCnt) => ({
   bookmarkCnt,
 }));
+
 const loadProductById = createAction(LOAD_PRODUCT_BY_ID, (product) => ({
   product,
 }));
+
 
 // initialState
 const initialState = {
