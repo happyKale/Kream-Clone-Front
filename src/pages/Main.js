@@ -18,6 +18,13 @@ const Main = () => {
   const productList = useSelector((state) => state.product.list.productList);
   const is_login = useSelector((state) => state.user.is_login);
 
+
+  React.useEffect(()=>{
+console.log("[main] product list:::",productList);
+            dispatch(productActions.getProductsMW());
+
+  },[is_login])
+
   const StyledButton = styled.button`
     margin: 20px auto 0px;
     height: 40px;

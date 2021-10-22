@@ -20,24 +20,28 @@ const checkPage = createAction(CHECK_PAGE, (url) => ({ url }));
 
 //로그인
 const loginMW = (userEmail, userPW) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     const user = {
       username: userEmail,
       password: userPW,
     };
-    apis
+     apis
       .loginAX(user)
-      .then((response) => {
+      .then(async(response) => {
         console.log("[Login now] response", response);
         if (response.data.statusCode === "200") {
           const getUrl = getState().user.beforeLogin;
           cookies.set("X-AUTH-TOKEN", response.data.token);
           dispatch(checkLogin(true));
-          dispatch(productActions.getProductsMW());
-
           const url = getUrl === "" ? "/" : getUrl;
-          history.push(url);
-          dispatch(checkPage(""));
+          const afterSaveToken = () => {
+            history.push(url);
+            dispatch(checkPage(""));
+            window.location.reload();
+            // dispatch(checkLogin("/"));
+            // dispatch(productActions.getProductsMW());
+          }
+          window.setTimeout(afterSaveToken,1000);
         } else {
           alert("이메일 또는 비밀번호를 확인해주세요.");
         }
@@ -48,9 +52,12 @@ const loginMW = (userEmail, userPW) => {
   };
 };
 
+
+
 //로그인 확인 미들웨어
 const checkLoginMW = (url) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
+    const token = await cookies.get("X-AUTH-TOKEN");
     console.log("token? :::", token);
     if (token === undefined) {
       dispatch(checkLogin(false));

@@ -24,10 +24,10 @@ export const apis = {
   createAccountAX: (user) => instance.post("/user/signup", user),
 
   //로그인
-  loginAX: (user) => instance.post("/user/login", user),
+ loginAX: (user) =>  instance.post("/user/login", user),
 
   //로그인 확인
-  loginCheckAX: () => instance.get("/user/logincheck"),
+  loginCheckAX: () =>  instance.get("/user/logincheck"),
 
   //거래 페이지
   transectionAX: (productid, list) =>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/store";
 import { Grid, Text, Image } from "../elements";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,8 @@ const Card = (props) => {
   const dispatch = useDispatch();
   const id = props.product.id;
   const bookmark = props.product.bookMark;
+  const productList = useSelector((state) => state.product.list.productList);
+  
 
   return (
     <React.Fragment>
