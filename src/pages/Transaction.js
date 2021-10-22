@@ -5,17 +5,54 @@ import {actionCreators as transectionAction} from "../redux/modules/transaction"
 import Header from "../components/Header";
 import styled from "styled-components";
 import { Button } from "../elements";
+import { history } from "../redux/store";
+import { useParams } from "react-router";
 
 const Transection = () => {
-
+    
     const dispatch = useDispatch();
 
+    //입찰 true / 즉시 false
     const [is_bidding, setBidding] = React.useState(false);
+
+    //입찰시 input 에 입력된 후 출력되는 총 정산금액
     const [inputValue, setInputValue] = React.useState('_');
+
+    //경고문
+    const [warning, setWarning] = React.useState({className:"", text:" "});
+
+    //최근 거래내역이 없을 시 즉시구매 클릭 막기
+    const [disabled, setdisabled] = React.useState(false);
+
+    //상세보기에서 선택한 버튼 sell or buy
     const componentType = useSelector(state => state.transaction.componentType);
+
+    //상품 정보
     const product = useSelector(state => state.product.product);
     const size = useSelector(state => state.size.size);
     const priceBySize = useSelector(state => state.size.priceBySize);
+    const param = useParams();
+
+    React.useEffect(()=>{
+        console.log('[componentType :::]',componentType);
+        console.log('[priceBySize :::]',priceBySize.priceSell);
+        console.log('[product :::]',product);
+        console.log('[param :::]', param.productID);
+    
+        if (product === null ){
+            history.push('/detail/'+param.productID)
+        }
+       
+            const is_disabled = 
+            ((componentType === "sell")&&(priceBySize?.priceSell === "판매 입찰")) || ((componentType === "buy")&&(priceBySize?.priceBuy === "구매 입찰"))? true :false;
+            setdisabled(is_disabled);
+            setBidding(is_disabled);
+     
+            
+        
+        
+    },[priceBySize])
+
 
     const TextList = componentType === "buy"
         ? "구매"
@@ -23,44 +60,47 @@ const Transection = () => {
 
     const onChangeValue = React.useCallback(_.debounce((e) => {
         const value = e.target.value;
-        var check = /[0-9]/
-        if (!check.test(value)) {
-            alert('숫자만 입력해주세요!')
-        } else {
-            setInputValue(value);
-        }
+            if(Number(value)>=30000){
+                setInputValue(value);
+                setWarning({className:"", text:""})
+            }else{
+                setWarning({className:"warn", text:"3만원 이상 입력해주세요."})
+                setInputValue("_");
+
+            }
     }, 1000), [])
 
     const SetList = {
-        modelImage:product.image,
-        modelNum: product.modelNumber,
-        modelNameEN: product.modelName.split(';')[0],
-        modelNameKO: product.modelName.split(';')[1],
+        
+        modelImage:product?.image,
+        modelNum: product?.modelNumber,
+        modelNameEN: product?.modelName.split(';')[0],
+        modelNameKO: product?.modelName.split(';')[1],
         size:size,
-        buyPrice:priceBySize.priceBuy === "구매 입찰"?"-":priceBySize.priceBuy,
-        sellPrice:priceBySize.priceSell === "판매 입찰"?"-":priceBySize.priceSell,
+        buyPrice:priceBySize?.priceBuy === "구매 입찰"?"-":priceBySize?.priceBuy,
+        sellPrice:priceBySize?.priceSell === "판매 입찰"?"-":priceBySize?.priceSell,
     }
 
-    const keepGoingButton = () => {
 
-        // const list = {
-        //     requestType: componentType, //sell or buy
-        //     purchaseType: is_bidding
-        //         ? "bidding"
-        //         : "prompt", //bidding: 입찰, prompt:즉시거래
-        //     priceExpected: is_bidding
-        //         ? inputValue
-        //         : productPrice.priceBuy, // 구매/판매 입찰가
-        //     size: size
-        // }
-        // dispatch(transectionAction.productInfoMW(list))
+    const keepGoingButton = () => {
+        const priceExPrompt = componentType === "sell"? SetList.sellPrice: SetList.buyPrice
+
+        const list = {
+            requestType: String(componentType), //sell or buy
+            purchaseType: String(is_bidding
+                ? "bidding"
+                : "prompt"), //bidding: 입찰, prompt:즉시거래
+            priceExpected: String(is_bidding
+                ? inputValue
+                : priceExPrompt.indexOf(',')? priceExPrompt.split(',')[0] + priceExPrompt.split(',')[1] :priceExPrompt), // 구매/판매 입찰가
+            size: String(size),
+        }
+        console.log('[Tracsaction] POST list:::',list);
+        dispatch(transectionAction.productInfoMW(list))
         
     }
 
-    React.useEffect(()=>{
-        console.log(product);
 
-    },[])
 
     return (
         <React.Fragment>
@@ -93,7 +133,7 @@ const Transection = () => {
                                 <p>{SetList.sellPrice}</p>
                             </div>
                         </section>
-                        <StyleTypeButton>
+                        <StyleTypeButton componentType={componentType}>
                             <button
                                 className={is_bidding
                                     ? "on"
@@ -110,6 +150,7 @@ const Transection = () => {
                                 className={is_bidding
                                     ? ""
                                     : "on"}
+                                disabled={disabled}
                                 onClick={() => {
                                     setBidding(false);
                                     dispatch(transectionAction.headerTitle(TextList + " 입찰하기"))
@@ -131,17 +172,24 @@ const Transection = () => {
                             {
                                 is_bidding
                                     ? <label>
-                                        <p className="warn">3만원 부터 천원단위로 입력하세요.</p>
+                                        <p className={warning.className+" warnText"}>{warning.text}</p>
                                         <input className="price"
                                             placeholder="희망가 입력"
+                                            onKeyPress={(event) => {
+                                                if (!/[0-9]/.test(event.key)) {
+                                                  event.preventDefault();
+                                                }
+                                            }}
                                             onChange={(e) => {
                                                 onChangeValue(e)
-                                            }}/><span>원</span></label>
+                                            }}
+
+                                            /><span>원</span></label>
                                     : <p className="price">
-                                            <span>{SetList.buyPrice}</span>원</p>
+                                            <span>{componentType === "buy"? SetList.buyPrice : SetList.sellPrice}</span>원</p>
                             }
                         </div>
-                        <span/>
+                        <span className={warning.className}/>
                         <StyledExtra>
                             <div>
                                 <p>검수비</p>
@@ -181,8 +229,8 @@ const Transection = () => {
                         <p>{
                                 is_bidding
                                     ? inputValue
-                                    : SetList.buyPrice
-                            }원</p>
+                                    : componentType === "buy"? SetList.buyPrice : SetList.sellPrice
+                            }<span>원</span></p>
                     </div>
                     <Button 
                     onClick={keepGoingButton}
@@ -199,7 +247,9 @@ const Transection = () => {
             </BackgroundBox>
         </React.Fragment>
     )
+    
 }
+
 
 //배경
 const BackgroundBox = styled.article `
@@ -343,7 +393,7 @@ width: 100%;
     }
     button.on {
         color: #fff;
-        background-color: #ef6253;
+        background-color:  ${(props)=>props.componentType === "sell"?"#42B979":"#ef6253"};
         letter-spacing: .15px;
         font-weight: 700;
     }
@@ -359,12 +409,14 @@ padding:0 32px 32px 32px;
     padding-bottom:10px;
 }
 
-& >span{
+& > span{
     display: block;
     width: 100%;
     height: 2px;
     background-color: #ebebeb;
 }
+
+& > span.warn {background-color:#f15746;}
 
 .title{
     font-size: 14px;
@@ -408,6 +460,15 @@ font-size: 20px;
 
 label span{
 padding-left: 2px;
+}
+.warnText{
+    height: 19px;
+    
+}
+.warn {
+    font-size: 13px;
+    color: #f15746;
+    text-align: right;
 }
 
 
@@ -456,6 +517,9 @@ div{
     font-weight: 600;
     letter-spacing: normal;
     color: #f15746;
+    }
+    p span{
+        font-style: normal;
     }
 }
 `
