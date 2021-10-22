@@ -8,15 +8,15 @@ import Card from "../components/Card";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Slider from "../components/Slider";
+import { actionCreators as userCheckAction } from "../redux/modules/user";
+import { Cookies } from "react-cookie";
+import { apis } from "../lib/axios";
 
 const Main = () => {
+  const cookies = new Cookies();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.product.list.productList);
   const is_login = useSelector((state) => state.user.is_login);
-
-  React.useEffect(() => {
-    dispatch(productActions.getProductsMW());
-  }, []);
 
   const StyledButton = styled.button`
     margin: 20px auto 0px;
