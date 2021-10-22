@@ -46,8 +46,13 @@ const Main = () => {
         </Grid>
       </SliderSection>
       {/* Just Dropped */}
-      <Grid margin="40px 0px 0px 0px" padding="0px 40px" height="41px">
-        <Grid margin="0px auto" maxWidth="1280px" padding="0px">
+      <Grid
+        margin="40px auto 0px"
+        maxWidth="1280px"
+        padding="0px 40px"
+        height="41px"
+      >
+        <Grid margin="0px auto" padding="0px">
           <Text fontSize="20px" lineHeight="22px" margin="0px" padding="0px">
             Just Dropped
           </Text>
