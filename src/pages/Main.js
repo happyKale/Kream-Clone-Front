@@ -12,6 +12,7 @@ import { actionCreators as userCheckAction } from "../redux/modules/user";
 import { Cookies } from "react-cookie";
 import { apis } from "../lib/axios";
 
+
 const Main = () => {
   const cookies = new Cookies();
   const dispatch = useDispatch();
@@ -42,9 +43,11 @@ console.log("[main] product list:::",productList);
     <React.Fragment>
       <Header />
       {/* 슬라이드 베너 */}
+      <SliderSection>
       <Grid width="100%" height="480px" margin="0px 0px 45px 0px">
         <Slider></Slider>
       </Grid>
+      </SliderSection>
       {/* Just Dropped */}
       <Grid margin="40px 0px 0px 0px" padding="0px 40px" height="41px">
         <Grid margin="0px auto" maxWidth="1280px" padding="0px">
@@ -235,5 +238,53 @@ const ImageBannerRight = styled.div`
   background-repeat: no-repeat;
   cursor: pointer;
 `;
+
+const SliderSection = styled.section`
+.slick-slider.slick-initialized{
+  position: relative;
+}
+.slick-dots{
+  position: absolute;
+  bottom:10px;
+}
+
+.slick-arrow{
+  position: absolute;
+  z-index: 100;
+  
+    bottom: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    font-size: 0;
+    color: rgba(0,0,0,0);
+    cursor: pointer;
+  
+}
+.slick-arrow.slick-next{
+  right:0;
+  &::before{
+    content: "";
+    z-index: 1;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxwYXRoIHN0cm9rZT0iI0JCQiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik0zMCAyMGwyMCAyMC0yMCAyMCIvPgo8L3N2Zz4K");
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+}
+.slick-arrow.slick-prev{
+  left:0;
+  &::before{
+    content:"";
+    z-index: 1;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDgwIDgwIj4KICAgIDxwYXRoIHN0cm9rZT0iI0JCQiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik01MCA2MEwzMCA0MGwyMC0yMCIvPgo8L3N2Zz4K");
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+}
+
+
+`
 
 export default Main;
