@@ -133,6 +133,7 @@ justify-content: center;
     display:flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 60px;
     label{
         width:100%;
     }
