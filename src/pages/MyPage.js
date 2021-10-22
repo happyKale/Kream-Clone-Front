@@ -150,7 +150,7 @@ const MyPage = () => {
                 <BookmarkContainer>
                     <h1>관심 상품</h1>
                     {
-                        bookMarkList ? bookMarkList.map((product) => {
+                        bookMarkList ? bookMarkList.map((product, idx) => {
                             return (
                                 // <div key={product.modelName}>
                                 //     <div>
@@ -178,7 +178,7 @@ const MyPage = () => {
                                 //         </p>
                                 //     </div>
                                 // </div>
-                                <Card key={product.id} product={product}/>
+                                <Card key={idx} product={product}/>
                             );
                         }): <div className="emptyBookmark"><p>추가하신 관심 상품이 없습니다.</p></div>
                     }

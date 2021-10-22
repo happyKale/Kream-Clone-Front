@@ -28,6 +28,7 @@ const Detail = () => {
     const dispatch = useDispatch();
     const productId = useParams().productId;
     const product = useSelector((state) => state.product.product);
+    // const product = useSelector((state) => state.product.product.shoesDto);
     const size = useSelector((state) => state.size.size);
     const priceBySize = useSelector((state) => state.size.priceBySize);
 
@@ -48,6 +49,7 @@ const Detail = () => {
     }
 
     React.useEffect(() => {
+        console.log('[Detail] product:::',product)
         // 상세페이지 정보 불러오기 MW dispatch (가격 관련 정보 제외) 
         dispatch(productActions.loadProductByIdMW(productId));
         // 모든 사이즈 즉시 구매가 조회 MW dispatch 
@@ -289,7 +291,7 @@ const Detail = () => {
                                                 borderRadius: "10px",
                                                 color: "#fff"
                                             }}
-                                            onClick={() => { history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy")) }}
+                                            onClick={() => { history.push(`/transaction/${productId}`); dispatch(saveTypeActions.componentType("buy")) }}
                                         >
                                             <div
                                                 style={{
@@ -357,7 +359,7 @@ const Detail = () => {
                                                 color: "#fff",
                                                 marginLeft: "10px",
                                             }}
-                                            onClick={() => { history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy")) }}
+                                            onClick={() => { history.push(`/transaction/${productId}`); dispatch(saveTypeActions.componentType("sell")) }}
                                         >
                                             <div
                                                 style={{

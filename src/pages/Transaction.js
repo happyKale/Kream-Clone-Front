@@ -35,9 +35,8 @@ const Transection = () => {
 
     React.useEffect(()=>{
         console.log('[componentType :::]',componentType);
-        console.log('[priceBySize :::]',priceBySize.priceSell);
+        console.log('[priceBySize :::]',priceBySize);
         console.log('[product :::]',product);
-        console.log('[param :::]', param.productID);
     
         if (product === null ){
             history.push('/detail/'+param.productID)

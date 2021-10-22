@@ -49,6 +49,10 @@ const Login = () => {
         dispatch(loginAction.loginMW(userEmail,userPW))
     }
 
+    React.useEffect(()=>{
+        
+    },[])
+
     return (
         <React.Fragment>
             <StyledArticle>

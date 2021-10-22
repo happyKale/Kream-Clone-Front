@@ -30,7 +30,9 @@ const Header = () => {
                                     : "off"}>
                                 <div className="innerBox">
                                     <div>
-                                        <a href="/mypage" className="myPage">마이페이지</a>
+                                        <a href="/mypage" className="myPage" onClick={()=>{
+                                            dispatch(userCheckAction.checkLoginMW('/mypage'));
+                                        }}>마이페이지</a>
                                         <a
                                             href="/login"
                                             className="logout"
