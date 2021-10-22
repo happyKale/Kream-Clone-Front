@@ -16,6 +16,7 @@ const Card = (props) => {
   const mypageBookmark = mypage? props.product: null;
   const bookmark = props.product.bookMark;
   const productList = useSelector((state) => state.product.list.productList);
+  const is_login = useSelector((state)=> state.user.is_login)
 
 //   brand: "Jordan"
 // image: "https://kream-phinf.pstatic.net/MjAyMDEwMjJfMTg2/MDAxNjAzMzMzOTM5MTQ0.resSxHG53R7j1awM1CccFGyBMy8nvmaEfxtL7yloUP4g.gis2sVQYnRUPCWtiC3xAHHJ0HpIIdN4hgXX7f11-ONQg.PNG/p_17627_0_503e3395e113498a95c8516614309221.png?type=l"
@@ -31,7 +32,8 @@ const Card = (props) => {
             width="34px"
             height="37px"
             onClick={() => {
-              dispatch(productActions.setBookmarkMW(id, bookmark, "main"));
+              if(is_login){dispatch(productActions.setBookmarkMW(id, bookmark, "main"));}
+              else{history.push('/login')}
             }}
           >
             <Text

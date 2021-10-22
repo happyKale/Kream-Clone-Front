@@ -110,6 +110,7 @@ console.log("[main] product list:::",productList);
           width="100%"
           height="100%"
           backgroundSize="contain"
+          margin="0 auto"
           src="https://kream-phinf.pstatic.net/MjAyMTEwMTVfMjQ0/MDAxNjM0Mjc2MzY0ODky.4ajOLvDdvoLxxz-Kdj5An3gtlFMlQnx-L2LSMCC9bFAg._Sepzgo_SUwZHGgleutbeV8-UL87IMngGJPLAAaqBt4g.PNG/a_037d39a2b2794477a67aa91b89292dc2.png?type=l"
         ></Image>
       </Grid>

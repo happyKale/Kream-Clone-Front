@@ -34,14 +34,14 @@ const loginMW = (userEmail, userPW) => {
           cookies.set("X-AUTH-TOKEN", response.data.token);
           dispatch(checkLogin(true));
           const url = getUrl === "" ? "/" : getUrl;
-          const afterSaveToken = () => {
+          
             history.push(url);
             dispatch(checkPage(""));
             window.location.reload();
             // dispatch(checkLogin("/"));
             // dispatch(productActions.getProductsMW());
-          }
-          window.setTimeout(afterSaveToken,1000);
+          
+          
         } else {
           alert("이메일 또는 비밀번호를 확인해주세요.");
         }
@@ -62,7 +62,7 @@ const checkLoginMW = (url) => {
     if (token === undefined) {
       dispatch(checkLogin(false));
       dispatch(checkPage(url));
-      history.push("/login");
+      
       console.log("token is undefined");
     } else if (token !== undefined) {
       apis
@@ -73,7 +73,7 @@ const checkLoginMW = (url) => {
           if (res.data.statusCode === "500") {
             dispatch(checkLogin(false));
             dispatch(checkPage(url));
-            history.push("/login");
+            
           } else if (res.data.statusCode === "200") {
             dispatch(checkLogin(true));
             dispatch(checkPage(""));

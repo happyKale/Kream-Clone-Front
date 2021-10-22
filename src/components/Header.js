@@ -34,7 +34,7 @@ const Header = () => {
                                             dispatch(userCheckAction.checkLoginMW('/mypage'));
                                         }}>마이페이지</a>
                                         <a
-                                            href="/login"
+                                            href="#"
                                             className="logout"
                                             onClick={() => {
                                                 dispatch(userCheckAction.checkLogin(false))
