@@ -26,23 +26,18 @@ import Text from "../elements/Text";
 const Detail = () => {
   const dispatch = useDispatch();
   const productId = useParams().productId;
-  const productList = useSelector((state) => state.product.list.productList);
   const product = useSelector((state) => state.product.product);
   const size = useSelector((state) => state.size.size);
   const priceBySize = useSelector((state) => state.size.priceBySize);
 
-  const bookmark = productList?.find((item) => item.id == productId).bookMark;
-  console.log("북마크 여부: ", bookmark);
-  console.log("productId", productId);
   console.log("productId", productId);
   console.log("size", size);
   console.log("priceBySize", priceBySize);
 
-  const [isBookmarked, setIsBookmarked] = React.useState(bookmark);
+  const [isBookmarked, setIsBookmarked] = React.useState(false);
   const [modalShow, setModalShow] = React.useState(false);
 
   const toggleBookmark = (e) => {
-    dispatch(productActions.setBookmarkMW(productId, bookmark, "detail"));
     if (isBookmarked === false) {
       setIsBookmarked(true);
     } else {
@@ -50,15 +45,36 @@ const Detail = () => {
     }
   };
 
+  const toTransactionBuy = () => {
+    if (size === null) {
+      window.alert("사이즈를 선택하세요.");
+    } else {
+      history.push(`/transaction/${product.productId}`);
+      dispatch(saveTypeActions.componentType("buy"));
+    }
+  };
+
+  const toTransactionSell = () => {
+    if (size === null) {
+      window.alert("사이즈를 선택하세요.");
+    } else {
+      history.push(`/transaction/${product.productId}`);
+      dispatch(saveTypeActions.componentType("sell"));
+    }
+  };
+
   React.useEffect(() => {
     // 상세페이지 정보 불러오기 MW dispatch (가격 관련 정보 제외)
     dispatch(productActions.loadProductByIdMW(productId));
+  }, [productId]);
+
+  React.useEffect(() => {
     // 모든 사이즈 즉시 구매가 조회 MW dispatch
     dispatch(sizeActions.getPriceBuyPromptMW(productId));
     // 단일 사이즈 가격 조회 MW dispatch (size를 인풋으로 받는)
     dispatch(sizeActions.getPriceBySizeMW(productId, size));
     // 북마크 갯수 조회 MW dispatch
-  }, [productId, size]);
+  }, [size]);
 
   return (
     <React.Fragment>
@@ -199,7 +215,6 @@ const Detail = () => {
                     >
                       <button
                         style={{
-                          display: "block",
                           fontSize: "16px",
                           lineHeight: "24px",
                           letterSpacing: "-0.21px",
@@ -288,10 +303,7 @@ const Detail = () => {
                         borderRadius: "10px",
                         color: "#fff",
                       }}
-                      onClick={() => {
-                        history.push(`/transaction/${product.productId}`);
-                        dispatch(saveTypeActions.componentType("buy"));
-                      }}
+                      onClick={toTransactionBuy}
                     >
                       <div
                         style={{
@@ -357,10 +369,7 @@ const Detail = () => {
                         color: "#fff",
                         marginLeft: "10px",
                       }}
-                      onClick={() => {
-                        history.push(`/transaction/${product.productId}`);
-                        dispatch(saveTypeActions.componentType("buy"));
-                      }}
+                      onClick={toTransactionSell}
                     >
                       <div
                         style={{
@@ -426,11 +435,9 @@ const Detail = () => {
                       borderRadius: "10px",
                       color: "#333",
                       marginTop: "12px",
-                      cursor: "pointer",
                     }}
-                    onClick={toggleBookmark}
                   >
-                    <span>
+                    <span onClick={toggleBookmark}>
                       {isBookmarked ? (
                         <FontAwesomeIcon icon={fasBookmark} />
                       ) : (

@@ -20,6 +20,8 @@ html{
             outline: none;
             color:#000;
         }
+
+        p{margin:0;}
     }
 }
 

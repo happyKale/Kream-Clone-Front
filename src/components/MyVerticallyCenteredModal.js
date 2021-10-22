@@ -2,10 +2,17 @@ import React from "react";
 import { history } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+// Bootstrap-related
 import "bootstrap/dist/css/bootstrap.min.css";
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import Button from "react-bootstrap/Button";
 
+// Font Awesome-related
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle as farTimesCircle } from '@fortawesome/free-regular-svg-icons';
+
+// Action Creator-related
 import { actionCreators as sizeActions } from "../redux/modules/size";
 
 function MyVerticallyCenteredModal(props) {
@@ -13,19 +20,9 @@ function MyVerticallyCenteredModal(props) {
 
     const [size, setSize] = React.useState("");
 
-
     const priceBySizeTemporary = useSelector((state) => state.size.priceBuyPromptList);
 
-    // 임시로 받는 사이즈별 가격 리스트
-    // 서버에서 받는 것으로 대체 필요
-    // const priceBySizeTemporary = [
-    //     { size: "230", price: "130,000" },
-    //     { size: "240", price: "140,000" },
-    //     { size: "250", price: "150,000" },
-    //     { size: "260", price: "160,000" },
-    //     { size: "270", price: "170,000" },
-    //     { size: "280", price: "180,000" },
-    // ]
+    const hideModal = props.onHide;
 
     return (
         <Modal
@@ -111,7 +108,7 @@ function MyVerticallyCenteredModal(props) {
                                             // console.log(p.size);
                                             // setSize 디스패치
                                             dispatch(sizeActions.setSize(p.size));
-                                            // Detail 페이지로 돌아가기
+                                            hideModal();
                                         }}
                                     >
                                         <button
@@ -134,7 +131,7 @@ function MyVerticallyCenteredModal(props) {
                                             >
                                                 <span
                                                     style={{
-                                                        fontWeight: "700",
+                                                        fontWeight: "normal",
                                                         display: "block",
                                                         lineHeight: "17px",
                                                         marginTop: "-3px",
@@ -146,7 +143,7 @@ function MyVerticallyCenteredModal(props) {
                                                 <span
                                                     style={{
                                                         color: "#f15746",
-                                                        fontWeight: "700",
+                                                        fontWeight: "normal",
                                                         display: "block",
                                                         lineHeight: "14px",
                                                         marginTop: "1px",
@@ -177,12 +174,15 @@ function MyVerticallyCenteredModal(props) {
                         right: "20px"
                     }}
                 >
-                    <button
-                        type="button"
-                        class="btn-close close"
-                        aria-label="Close"
-                    >
-                    </button>
+                    <FontAwesomeIcon
+                        onClick={props.onHide}
+                        style={{
+                            width: "24px",
+                            height: "24px",
+                            color: "#d3d3d3"
+                        }}
+                        icon={farTimesCircle}
+                    />
                 </div>
             </div>
         </Modal >

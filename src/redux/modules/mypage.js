@@ -16,11 +16,10 @@ const initialState = {
 // 미들웨어 액션
 const getDataMW = () => {
   return function (dispatch, getState, { history }) {
-    console.log("여기가 getDataMW");
     apis
       .getMyPageDataAX()
       .then((res) => {
-        console.log("getDatasMW에서 받아온 데이터: ", res.data[0]);
+        console.log("[mypage MW] get user data::: ", res);
         const dataList = res.data;
         dispatch(getMyPage(dataList));
       })
