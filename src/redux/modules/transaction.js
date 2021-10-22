@@ -40,13 +40,14 @@ const headerTitle = createAction(HEADER_TITLE, (title)=>({title}))
 
 const productInfoMW = (list) => {
     return function (dispatch, getState, {history}){
-        const productID = getState().transection.productID;
-        
+        const productID = getState().product.product.id;
+        console.log('product id :::',productID)
         if (productID !== ""){
             apis.transectionAX(productID,list).then((response)=>{
                 console.log(response)
                 dispatch(headerTitle(null))
                 alert('완료되었습니다.');
+                history.goBack();
             }).catch((error)=>{
                 console.log("[Transection] Error :::",error);
             })

@@ -4,7 +4,7 @@ import { Cookies } from "react-cookie";
 
 import {history} from "../redux/store";
 import {useSelector, useDispatch} from "react-redux";
-import {checkLogin} from "../redux/modules/user";
+import {actionCreators as userCheckAction} from "../redux/modules/user";
 
 
 
@@ -30,12 +30,14 @@ const Header = () => {
                                     : "off"}>
                                 <div className="innerBox">
                                     <div>
-                                        <a href="/mypage" className="myPage">마이페이지</a>
+                                        <a href="/mypage" className="myPage" onClick={()=>{
+                                            dispatch(userCheckAction.checkLoginMW('/mypage'));
+                                        }}>마이페이지</a>
                                         <a
                                             href="/login"
                                             className="logout"
                                             onClick={() => {
-                                                dispatch(checkLogin(false))
+                                                dispatch(userCheckAction.checkLogin(false))
                                                 cookies.remove('X-AUTH-TOKEN');
                                             }}>로그아웃</a>
                                     </div>

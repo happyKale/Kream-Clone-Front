@@ -28,6 +28,7 @@ const Grid = (props) => {
     alignItems,
     cursor,
     position,
+    backgroundImage,
   } = props;
   const styles = {
     width: width,
@@ -53,6 +54,7 @@ const Grid = (props) => {
     alignItems: alignItems,
     cursor: cursor,
     position: position,
+    backgroundImage: backgroundImage,
   };
 
   return (
@@ -88,6 +90,7 @@ Grid.defaultProps = {
   alignItems: null,
   cursor: null,
   position: null,
+  backgroundImage: null,
   onClick: () => {},
 };
 
@@ -115,6 +118,7 @@ const StyledGrid = styled.div`
   align-items: ${(props) => props.alignItems};
   cursor: ${(props) => props.cursor};
   position: ${(props) => props.position};
+  background-image: ${(props) => `url(${props.backgroundImage})`};
 `;
 
 export default Grid;
