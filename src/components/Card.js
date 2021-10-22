@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/store";
 import { Grid, Text, Image } from "../elements";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,12 +12,20 @@ import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons";
 const Card = (props) => {
   const dispatch = useDispatch();
   const id = props.product.id;
+  const mypage = props.mypage;
+  const mypageBookmark = mypage? props.product: null;
   const bookmark = props.product.bookMark;
+  const productList = useSelector((state) => state.product.list.productList);
+
+//   brand: "Jordan"
+// image: "https://kream-phinf.pstatic.net/MjAyMDEwMjJfMTg2/MDAxNjAzMzMzOTM5MTQ0.resSxHG53R7j1awM1CccFGyBMy8nvmaEfxtL7yloUP4g.gis2sVQYnRUPCWtiC3xAHHJ0HpIIdN4hgXX7f11-ONQg.PNG/p_17627_0_503e3395e113498a95c8516614309221.png?type=l"
+// modelName: "Jordan 1 Retro High Rookie of the Year;조던 1 레트로 하이 루키 오브 더 이어"
+// originPrice: "199,000원"
 
   return (
     <React.Fragment>
       <Grid width="100%" padding="0px 12px" margin="20px 0px" cursor="pointer">
-        <Bookmark>
+        {!mypage? <Bookmark>
           <Grid
             margin="0px"
             width="34px"
@@ -40,7 +48,7 @@ const Card = (props) => {
               )}
             </Text>
           </Grid>
-        </Bookmark>
+        </Bookmark> : null}
         {/* 이미지 */}
         <Grid
           height="20vw"
@@ -48,8 +56,9 @@ const Card = (props) => {
           backgroundColor="#EBF0F5"
           borderRadius="10px"
           onClick={() => {
-            history.push(`detail/${id}`);
+            if(!mypage){history.push(`detail/${id}`);}
           }}
+          
         >
           <Image
             borderRadius="13px"
@@ -61,7 +70,7 @@ const Card = (props) => {
         <Grid
           margin="9px 0px"
           onClick={() => {
-            history.push(`detail/${id}`);
+            if(!mypage){history.push(`detail/${id}`);}
           }}
         >
           <Grid>
@@ -87,7 +96,7 @@ const Card = (props) => {
           </Text>
           <Grid margin="7px 0px 0px 0px">
             <Text fontSize="15px" margin="0px" padding="0px">
-              {props.product.price}
+              {!mypage?props.product.price:mypageBookmark.originPrice}
             </Text>
             <Text
               margin="0px"

@@ -5,7 +5,7 @@ import {actionCreators as mypageActions} from "../redux/modules/mypage";
 import Header from "../components/Header";
 import { style } from "dom-helpers";
 import styled from "styled-components";
-import { Card } from "react-bootstrap";
+import Card from "../components/Card";
 
 const MyPage = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const MyPage = () => {
     const sellList = dataList
         ?.sellList;
     const bookMarkList = dataList
-        ?.bookMarkList;
+        ?.bookmarkList;
     const userName = dataList?.userName?.split("@")[0]
 
     let completedBuyNum = buyList?.filter((item) => item.transactionStatus === "completed").length;
@@ -65,7 +65,7 @@ const MyPage = () => {
                             </thead>
                             <tbody>
                                 {
-                                     buyList.map((item) => {
+                                     buyList.map((item,idx) => {
                                         let status = item.transactionStatus;
                                         let type = item.purchaseType;
                                         status === "completed"
@@ -76,7 +76,7 @@ const MyPage = () => {
                                             : (type = "즉시구매");
 
                                         return (
-                                            <tr>
+                                            <tr key={idx}>
                                                 <td>{
                                                         item
                                                             .modelName
@@ -119,7 +119,7 @@ const MyPage = () => {
                             </thead>
                             <tbody>
                                 {
-                                     sellList.map((item) => {
+                                     sellList.map((item,idx) => {
                                         let status = item.transactionStatus;
                                         let type = item.purchaseType;
                                         status === "completed"
@@ -130,7 +130,7 @@ const MyPage = () => {
                                             : (type = "즉시구매");
 
                                         return (
-                                            <tr>
+                                            <tr key={idx}>
                                                 <td>{
                                                         item
                                                             .modelName
@@ -150,37 +150,13 @@ const MyPage = () => {
                 <BookmarkContainer>
                     <h1>관심 상품</h1>
                     {
-                        bookMarkList ? bookMarkList.map((product, idx) => {
+                        bookMarkList ? 
+                        
+                        <div className="bookMarkBox">{bookMarkList.map((product, idx) => {
                             return (
-                                // <div key={product.modelName}>
-                                //     <div>
-                                //         <img
-                                //             src={product.image}
-                                //             alt={product
-                                //                 .modelName
-                                //                 .split(";")[0]}
-                                //             width="200"
-                                //             height="200"/>
-                                //     </div>
-                                //     <div>
-                                //         <p>
-                                //             {product.brand}
-                                //         </p>
-                                //         <p>
-                                //             {
-                                //                 product
-                                //                     .modelName
-                                //                     .split(";")[0]
-                                //             }
-                                //         </p>
-                                //         <p>
-                                //             {product.price}원
-                                //         </p>
-                                //     </div>
-                                // </div>
-                                <Card key={idx} product={product}/>
+                                <Card key={idx} mypage={true} product={product}/>
                             );
-                        }): <div className="emptyBookmark"><p>추가하신 관심 상품이 없습니다.</p></div>
+                        })}</div>: <div className="emptyBookmark"><p>추가하신 관심 상품이 없습니다.</p></div>
                     }
                 </BookmarkContainer>
                 </StyledContainer>
@@ -309,7 +285,7 @@ margin-top: 20px;
 
 table{
   width: 100%;
-  
+  min-height: 177px;
 }
 thead tr{
   th{
@@ -343,6 +319,49 @@ margin-top: 42px;
     font-weight: 700;
     margin: 0;
     padding-bottom: 16px;
+}
+.bookMarkBox{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    
+    & > .sc-gKseQn.gkvtpu{
+        width: 25%;
+
+        .sc-fubCzh{
+            display: none;
+        }
+
+        div:nth-child(2){
+            position: relative;
+            height: 0;
+            padding-top: 100%;
+            div{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                width: 81.5%;
+            }
+        }
+        div:nth-child(3){
+            div:first-child{
+                height: 17px;
+                display: flex;
+                & > p{
+                height: 14px;
+                line-height: 14px;
+                }
+            }
+            div:nth-child(3){
+                p:last-child{
+                    font-size: 11px;
+                }
+            }
+            
+        }
+    }
 }
 
 .emptyBookmark{

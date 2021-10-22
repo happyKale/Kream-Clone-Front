@@ -38,12 +38,12 @@ const componentType = createAction(COMPONENT_TYPE, (type)=>({type}))
 const productId = createAction(PRODUCT_ID, (id)=>({id}))
 const headerTitle = createAction(HEADER_TITLE, (title)=>({title}))
 
-const productInfoMW = (list) => {
+const productInfoMW = (list,id) => {
     return function (dispatch, getState, {history}){
-        const productID = getState().product.product.id;
-        console.log('product id :::',productID)
-        if (productID !== ""){
-            apis.transectionAX(productID,list).then((response)=>{
+        
+        console.log('product id :::',id)
+        if (id !== ""){
+            apis.transectionAX(id,list).then((response)=>{
                 console.log(response)
                 dispatch(headerTitle(null))
                 alert('완료되었습니다.');
