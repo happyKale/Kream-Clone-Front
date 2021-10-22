@@ -1,11 +1,11 @@
 import React from "react";
 import {history} from "../redux/store";
-import {apis} from "../lib/axios";
+import { useDispatch } from "react-redux";
 import _ from "lodash";
-import {Cookies} from "react-cookie";
 import styled from "styled-components";
 import {Button, Input, Text} from "../elements/index";
 import Header from "../components/Header";
+import { actionCreators as loginAction } from "../redux/modules/user";
 
 const Login = () => {
     const [userEmail, setEmail] = React.useState();
@@ -14,6 +14,8 @@ const Login = () => {
     const [warnPw, setWarnPw] = React.useState("");
     const [passEmail, setPassEmail] = React.useState("set");
     const [passPW, setPassPW] = React.useState("set");
+
+    const dispatch = useDispatch();
 
     const onChangeEmail = React.useCallback(_.debounce((e) => {
         const value = e.target.value;
@@ -44,25 +46,7 @@ const Login = () => {
     }, 1000), [])
 
     const loginButton = () => {
-        const cookies = new Cookies();
-        const user = {
-            username: userEmail,
-            password: userPW
-        }
-        apis
-            .loginAX(user)
-            .then((response) => {
-                console.log("[Login now] response", response)
-                if(response.data.statusCode === "200"){
-                    cookies.set("X-AUTH-TOKEN", response.data.token);
-                    history.push('/');
-                }else{
-                    alert('이메일 또는 비밀번호를 확인해주세요.');
-                }
-            })
-            .catch((error) => {
-                console.log("[Login error] createAccountAX :::", error)
-            });
+        dispatch(loginAction.loginMW(userEmail,userPW))
     }
 
     return (
