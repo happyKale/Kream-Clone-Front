@@ -43,7 +43,7 @@ const Footer = (props) => {
             </Grid>
           </Grid>
           {/* width="272px" */}
-          <Grid width="292px" height="147px">
+          <Grid width="302px" height="147px">
             <Text
               margin="0px 0px 8px 0px"
               fontSize="16px"
@@ -175,31 +175,31 @@ const Footer = (props) => {
             fontSize="13px"
           >
             <StyledDl>
-              <dt>크림 주식회사 · 대표</dt>
-              <dd>김창욱</dd>
+              <StyledDt>크림 주식회사 · 대표</StyledDt>
+              <StyledDd>김창욱</StyledDd>
             </StyledDl>
             <StyledDl>
-              <dt>사업자등록번호:</dt>
-              <dd>570-88-01618</dd>
-              <dd>사업자정보확인</dd>
+              <StyledDt>사업자등록번호:</StyledDt>
+              <StyledDd>570-88-01618</StyledDd>
+              <StyledDd>사업자정보확인</StyledDd>
             </StyledDl>
             <StyledDl>
-              <dt>통신판매업:</dt>
-              <dd>제 2021-성남분당C-0093호</dd>
+              <StyledDt>통신판매업:</StyledDt>
+              <StyledDd>제 2021-성남분당C-0093호</StyledDd>
             </StyledDl>
           </Grid>
           <Grid display="flex" color="rgba(34, 34, 34, 0.5)" fontSize="13px">
             <StyledDl>
-              <dt>사업장소재지:</dt>
-              <dd>경기도 성남시 분당구 분당내곡로 117, 8층</dd>
+              <StyledDt>사업장소재지:</StyledDt>
+              <StyledDd>경기도 성남시 분당구 분당내곡로 117, 8층</StyledDd>
             </StyledDl>
             <StyledDl>
-              <dt>개인정보관리책임자:</dt>
-              <dd>김미진</dd>
+              <StyledDt>개인정보관리책임자:</StyledDt>
+              <StyledDd>김미진</StyledDd>
             </StyledDl>
             <StyledDl>
-              <dt>호스팅 서비스:</dt>
-              <dd>네이버 클라우드 (주)</dd>
+              <StyledDt>호스팅 서비스:</StyledDt>
+              <StyledDd>네이버 클라우드 (주)</StyledDd>
             </StyledDl>
           </Grid>
         </Grid>
@@ -260,12 +260,13 @@ const StyledDt = styled.dt`
   color: rgba(34, 34, 34, 0.5);
   letter-spacing: -0.07px;
   margin: 0px;
+  font-weight: 400;
 `;
 const StyledDd = styled.dd`
   width: auto;
   color: rgba(34, 34, 34, 0.5);
   letter-spacing: -0.07px;
-  margin: 0px;
+  margin: 0px 12px 0px 2px;
 `;
 
 export default Footer;
