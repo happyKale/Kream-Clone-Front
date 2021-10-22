@@ -5,6 +5,7 @@ import _ from "lodash";
 import {history} from "../redux/store";
 import {Button, Text, Input} from "../elements";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Signup = () => {
 
@@ -114,6 +115,7 @@ const Signup = () => {
                     </div>
                 </StyledSection>
             </StyledArticle>
+            <Footer/>
         </React.Fragment>
     )
 }
@@ -137,6 +139,7 @@ justify-content: center;
     display:flex;
     flex-direction: column;
     align-items: center;
+    padding: 60px 0 160px;
     label{
         width:100%;
     }

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import {Button, Input, Text} from "../elements/index";
 import Header from "../components/Header";
 import { actionCreators as loginAction } from "../redux/modules/user";
+import Footer from "../components/Footer";
 
 const Login = () => {
     const [userEmail, setEmail] = React.useState();
@@ -109,6 +110,7 @@ const Login = () => {
                     </div>
                 </StyledSection>
             </StyledArticle>
+            <Footer/>
         </React.Fragment>
     )
 }
@@ -133,7 +135,7 @@ justify-content: center;
     display:flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 60px;
+    padding: 60px 0 160px;
     label{
         width:100%;
     }

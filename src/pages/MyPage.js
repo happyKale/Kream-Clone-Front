@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { style } from "dom-helpers";
 import styled from "styled-components";
 import Card from "../components/Card";
+import Footer from "../components/Footer";
 
 const MyPage = () => {
     const dispatch = useDispatch();
@@ -161,6 +162,7 @@ const MyPage = () => {
                 </BookmarkContainer>
                 </StyledContainer>
             </StyledMypageBox>
+            <Footer/>
         </React.Fragment>
     );
 };
