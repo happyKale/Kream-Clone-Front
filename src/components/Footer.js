@@ -6,7 +6,7 @@ const Footer = (props) => {
   return (
     <React.Fragment>
       <Grid
-        margin="62px 0px 0px 0px"
+        margin="0px"
         backgroundColor="#fff"
         padding="50px 40px"
         height="450px"
@@ -66,7 +66,12 @@ const Footer = (props) => {
               <StyledDt>점심시간</StyledDt>
               <StyledDd>평일 13:00 - 14:00</StyledDd>
             </Grid>
-            <Text margin="8px 0px 0px 0px" color="#222" fontSize="13px">
+            <Text
+              fontWeight="400"
+              margin="8px 0px 0px 0px"
+              color="#222"
+              fontSize="13px"
+            >
               1:1 문의하기는 앱에서만 가능합니다.
             </Text>
             <Grid
@@ -171,15 +176,26 @@ const Footer = (props) => {
           display="flex"
           justifyContents="space-between"
         >
-          <Grid minWidth="570px">
-            <Text color="rgba(34,34,34,.3)" fontSize="12px">
+          <Grid minWidth="608px">
+            <Text
+              fontWeight="400"
+              lineHeight="14px"
+              letterSpacing="-0.7px"
+              color="rgba(34,34,34,.3)"
+              fontSize="12px"
+            >
               크림(주)는 통신판매 중개자로서 통신판매의 당사자가 아니므로 개별
               판매자가 등록한 상품정보에 대해서 책임을 지지 않습니다. 단,
               거래과정에서 검수하고 보증하는 내용에 대한 책임은 당사에 있습니다.
             </Text>
           </Grid>
           <Grid>
-            <Text align="right" color="rgba(34,34,34,.3)" fontSize="12px">
+            <Text
+              margin="0px"
+              align="right"
+              color="rgba(34,34,34,.3)"
+              fontSize="12px"
+            >
               © 2021 KREAM.Corp.
             </Text>
           </Grid>
@@ -201,6 +217,7 @@ const StyledLi = styled.li`
 `;
 
 const StyledDl = styled.dl`
+  margin-right: 10px;
   display: flex;
   margin: 0px;
   height: 20px;

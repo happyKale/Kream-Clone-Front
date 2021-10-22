@@ -13,6 +13,7 @@ const Text = (props) => {
     borderBottom,
     display,
     align,
+    letterSpacing,
   } = props;
   const styles = {
     fontSize: fontSize,
@@ -24,6 +25,7 @@ const Text = (props) => {
     borderBottom: borderBottom,
     display: display,
     align: align,
+    letterSpacing: letterSpacing,
   };
 
   return (
@@ -43,6 +45,7 @@ Text.defaultProps = {
   borderBottom: null,
   display: null,
   align: null,
+  letterSpacing: null,
 };
 
 const StyledInput = styled.p`
@@ -55,6 +58,7 @@ const StyledInput = styled.p`
   border-bottom: ${(props) => props.borderBottom};
   display: ${(props) => props.display};
   text-align: ${(props) => props.align};
+  letter-spacing: ${(props) => props.letterSpacing};
 `;
 
 export default Text;
