@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Button } from "../elements";
 import { history } from "../redux/store";
 import { useParams } from "react-router";
+import Footer from "../components/Footer";
 
 const Transection = () => {
     
@@ -37,6 +38,12 @@ const Transection = () => {
         console.log('[componentType :::]',componentType);
         console.log('[priceBySize :::]',priceBySize);
         console.log('[product :::]',product);
+        if(is_bidding){
+            dispatch(transectionAction.headerTitle(TextList + " 입찰하기"));
+        }else{
+            dispatch(transectionAction.headerTitle("즉시 " + TextList + "하기"));
+
+        }
     
         if (product === null ){
             history.push('/detail/'+param.productID)
@@ -50,7 +57,7 @@ const Transection = () => {
     },[priceBySize])
 
 
-    const TextList = componentType === "buy"
+    const TextList = (componentType === "buy")
         ? "구매"
         : "판매";
 
@@ -136,7 +143,7 @@ const Transection = () => {
                                     : ""}
                                 onClick={() => {
                                     setBidding(true);
-                                    dispatch(transectionAction.headerTitle("즉시 " + TextList + "하기"))
+                                    dispatch(transectionAction.headerTitle(TextList + " 입찰하기"))
                                 }}>{
                                     componentType === "buy"
                                         ? "구매 입찰"
@@ -149,7 +156,7 @@ const Transection = () => {
                                 disabled={disabled}
                                 onClick={() => {
                                     setBidding(false);
-                                    dispatch(transectionAction.headerTitle(TextList + " 입찰하기"))
+                                    dispatch(transectionAction.headerTitle("즉시 " + TextList + "하기"))
                                 }}>{
                                     componentType === "buy"
                                         ? "즉시 구매"
@@ -241,6 +248,7 @@ const Transection = () => {
                         </StyledResult>
                 </ContainerBox>
             </BackgroundBox>
+            <Footer/>
         </React.Fragment>
     )
     
@@ -253,6 +261,7 @@ background-color:#FAFAFA ;
 width: 100%;
 min-height: calc(100% - 101px);
 padding-top: 20px;
+padding-bottom: 160px;
 
 `
 //컨테이너

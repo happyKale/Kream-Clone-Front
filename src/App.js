@@ -15,6 +15,7 @@ import { history } from "./redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userCheckAction } from "./redux/modules/user";
 import { actionCreators as productActions } from "./redux/modules/product";
+import {actionCreators as headerActions} from "./redux/modules/transaction"
 
 function App() {
     const is_login = useSelector((state) => state.user.is_login);

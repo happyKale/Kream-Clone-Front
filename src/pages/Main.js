@@ -10,6 +10,7 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Slider from "../components/Slider";
 import { actionCreators as userCheckAction } from "../redux/modules/user";
+import { actionCreators as headerActions } from "../redux/modules/transaction";
 import { Cookies } from "react-cookie";
 import { apis } from "../lib/axios";
 
@@ -22,6 +23,7 @@ const Main = () => {
   React.useEffect(() => {
     console.log("[main] product list:::", productList);
     dispatch(productActions.getProductsMW());
+    dispatch(headerActions.headerTitle(""));
   }, [is_login]);
 
   const StyledButton = styled.button`

@@ -95,6 +95,11 @@ const Detail = () => {
         dispatch(sizeActions.getPriceBySizeMW(productId, size));
     }, [size]);
 
+    React.useEffect(()=>{
+    dispatch(saveTypeActions.headerTitle(""));
+
+    },[])
+
     return (
         <React.Fragment>
             <Header />
