@@ -39,12 +39,12 @@ const loadProductByIdMW = (productId) => {
       .loadProductByIdAX(productId)
       .then((response) => {
         const product = response.data;
-        console.log('[Detail] load product',product);
+        console.log("[Detail] load product", product);
         dispatch(loadProductById(product));
       })
       .catch((error) => {
         window.alert("상품 정보를 불러오는데 실패하였습니다.");
-        console.log('[Detail] load product',error);
+        console.log("[Detail] load product", error);
         // history.push("/");
         history.goBack();
       });
