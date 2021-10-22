@@ -5,37 +5,26 @@ import {actionCreators as mypageActions} from "../redux/modules/mypage";
 import Header from "../components/Header";
 import { style } from "dom-helpers";
 import styled from "styled-components";
+import { Card } from "react-bootstrap";
 
 const MyPage = () => {
     const dispatch = useDispatch();
-    const dataList = useSelector((state) => state.mypage.list[0]);
+    const dataList = useSelector((state) => state.mypage.list);
     const buyList = dataList
         ?.buyList;
     const sellList = dataList
         ?.sellList;
     const bookMarkList = dataList
         ?.bookMarkList;
-
-    //테스트
-    // const buyList = [
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" },
-    //   {modelName:"aaa;ㅁㅁㅁ",transactionPrice:"10000",type:"입찰",status:"진행중" }
-    // ]
+    const userName = dataList?.userName?.split("@")[0]
 
     let completedBuyNum = buyList?.filter((item) => item.transactionStatus === "completed").length;
     let completedSellNum = sellList?.filter((item) => item.transactionStatus === "completed").length;
 
     React.useEffect(() => {
         dispatch(mypageActions.getDataMW());
+        console.log("mypage list :::",dataList);
     }, []);
-    console.log("sellList: ", sellList);
 
     return (
         <React.Fragment>
@@ -46,8 +35,8 @@ const MyPage = () => {
                 <UserProfile>
                     <img src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg" alt=""/>
                     <div>
-                        <p>닉네임</p>
-                        <p>아이디(이메일)</p>
+                        <p>{userName}</p>
+                        <p>{dataList?.userName}</p>
                     </div>
                 </UserProfile>
                 <History>
@@ -163,32 +152,33 @@ const MyPage = () => {
                     {
                         bookMarkList ? bookMarkList.map((product) => {
                             return (
-                                <div key={product.modelName}>
-                                    <div>
-                                        <img
-                                            src={product.image}
-                                            alt={product
-                                                .modelName
-                                                .split(";")[0]}
-                                            width="200"
-                                            height="200"/>
-                                    </div>
-                                    <div>
-                                        <p>
-                                            {product.brand}
-                                        </p>
-                                        <p>
-                                            {
-                                                product
-                                                    .modelName
-                                                    .split(";")[0]
-                                            }
-                                        </p>
-                                        <p>
-                                            {product.price}원
-                                        </p>
-                                    </div>
-                                </div>
+                                // <div key={product.modelName}>
+                                //     <div>
+                                //         <img
+                                //             src={product.image}
+                                //             alt={product
+                                //                 .modelName
+                                //                 .split(";")[0]}
+                                //             width="200"
+                                //             height="200"/>
+                                //     </div>
+                                //     <div>
+                                //         <p>
+                                //             {product.brand}
+                                //         </p>
+                                //         <p>
+                                //             {
+                                //                 product
+                                //                     .modelName
+                                //                     .split(";")[0]
+                                //             }
+                                //         </p>
+                                //         <p>
+                                //             {product.price}원
+                                //         </p>
+                                //     </div>
+                                // </div>
+                                <Card key={product.id} product={product}/>
                             );
                         }): <div className="emptyBookmark"><p>추가하신 관심 상품이 없습니다.</p></div>
                     }
