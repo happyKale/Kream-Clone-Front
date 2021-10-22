@@ -5,14 +5,14 @@ import { Grid, Text, Image } from "../elements";
 import { useDispatch } from "react-redux";
 import { actionCreators as productActions } from "../redux/modules/product";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons";
+
 const Card = (props) => {
   const dispatch = useDispatch();
   const id = props.product.id;
   const bookmark = props.product.bookMark;
-
-  const bookmarkChecked = {
-    backgroundColor: "red",
-  };
 
   return (
     <React.Fragment>
@@ -34,9 +34,9 @@ const Card = (props) => {
               fontSize="20px"
             >
               {bookmark ? (
-                <i className="fas fa-bookmark"></i>
+                <FontAwesomeIcon icon={fasBookmark} />
               ) : (
-                <i className="far fa-bookmark"></i>
+                <FontAwesomeIcon icon={farBookmark} />
               )}
             </Text>
           </Grid>
@@ -95,7 +95,7 @@ const Card = (props) => {
               color="rgba(34,34,34,.5)"
               fontSize="11px"
             >
-              즉시 구매가
+              {props.product.isOriginPrice ? "발매가" : "즉시 거래가"}
             </Text>
           </Grid>
         </Grid>

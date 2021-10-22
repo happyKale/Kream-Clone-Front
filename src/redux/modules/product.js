@@ -11,10 +11,14 @@ const LOAD_PRODUCT_BY_ID = "LOAD_PRODUCT_BY_ID";
 
 // 액션 생성 함수
 const getProducts = createAction(GET_PRODUCT, (product) => ({ product }));
-const setBookmark = createAction(SET_BOOKMARK, (productIdx, page) => ({
-  productIdx,
-  page,
-}));
+const setBookmark = createAction(
+  SET_BOOKMARK,
+  (productIdx, bookmark, page) => ({
+    productIdx,
+    bookmark,
+    page,
+  })
+);
 const setBookmarkCnt = createAction(SET_BOOKMARKCNT, (bookmarkCnt) => ({
   bookmarkCnt,
 }));
@@ -35,7 +39,7 @@ const loadProductByIdMW = (productId) => {
       .loadProductByIdAX(productId)
       .then((response) => {
         const product = response.data;
-        // console.log(product);
+        console.log("이게 프로덕트정보라고: ", product);
         dispatch(loadProductById(product));
       })
       .catch((error) => {
@@ -69,8 +73,8 @@ const setBookmarkMW = (id, bookmark, page) => {
   return function (dispatch, getState, { history }) {
     const productList = getState().product.list.productList;
     console.log("북마크 미들웨어에서 데이터: ", productList);
-    const idx = productList?.findIndex((item) => item.id === id);
-    dispatch(setBookmark(idx, page));
+    const idx = productList.findIndex((item) => item.id == id);
+    console.log("idx: ", idx);
     apis
       .setBookmarkAX({
         productId: id,
@@ -79,15 +83,7 @@ const setBookmarkMW = (id, bookmark, page) => {
       .then((res) => {
         console.log("[Main] bookmark response data:::", res.data);
         // 북마크 요청이 잘 완료됨
-        if (res.data.statusCode === 200) {
-          dispatch(setBookmark(idx, page));
-          //디테일 페이지라면 bookmarkCnt에 response로 넘어온 북마크 개수 넣기
-          if (page === "detail") {
-            dispatch(setBookmarkCnt(res.data.bookmarkCnt));
-          }
-        } else if (res.data.statusCode === 500) {
-          window.alert("상품을 찾을 수 없습니다.");
-        }
+        dispatch(setBookmark(idx, bookmark, page));
       })
       .catch((err) => {
         console.log(err);
@@ -105,19 +101,25 @@ export default handleActions(
     [SET_BOOKMARK]: (state, action) =>
       produce(state, (draft) => {
         // 메인페이지에서 북마크 한 경우
-        if (action.payload.page === "main") {
+        if (action.payload.page == "main") {
           const index = action.payload.productIdx;
           if (draft.list.productList[index].bookMark === true) {
             draft.list.productList[index].bookMark = false;
           } else {
             draft.list.productList[index].bookMark = true;
           }
+          return;
         } else {
           // 상세페이지에서 북마크 한 경우
-          if (draft.product.bookmark === true) {
-            draft.product.bookMark = false;
+          const index = action.payload.productIdx;
+          if (action.payload.bookmark === true) {
+            if (draft.product.bookMarkCnt !== 0) {
+              draft.product.bookMarkCnt -= 1;
+              draft.list.productList[index].bookMark = false;
+            }
           } else {
-            draft.product.bookMark = true;
+            draft.product.bookMarkCnt += 1;
+            draft.list.productList[index].bookMark = true;
           }
         }
       }),
