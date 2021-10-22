@@ -15,6 +15,7 @@ const Text = (props) => {
     align,
     letterSpacing,
   } = props;
+  
   const styles = {
     fontSize: fontSize,
     fontWeight: fontWeight,

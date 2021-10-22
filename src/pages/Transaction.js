@@ -47,9 +47,6 @@ const Transection = () => {
             setdisabled(is_disabled);
             setBidding(is_disabled);
      
-            
-        
-        
     },[priceBySize])
 
 
@@ -95,7 +92,7 @@ const Transection = () => {
             size: String(size),
         }
         console.log('[Tracsaction] POST list:::',list);
-        dispatch(transectionAction.productInfoMW(list))
+        dispatch(transectionAction.productInfoMW(list,param.productID))
         
     }
 

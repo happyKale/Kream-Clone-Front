@@ -47,7 +47,7 @@ console.log("[main] product list:::",productList);
       </Grid>
       {/* Just Dropped */}
       <Grid margin="40px 0px 0px 0px" padding="0px 40px" height="41px">
-        <Grid margin="0px auto" maxWidth="1280px" padding="0px 40px">
+        <Grid margin="0px auto" maxWidth="1280px" padding="0px">
           <Text fontSize="20px" lineHeight="22px" margin="0px" padding="0px">
             Just Dropped
           </Text>
@@ -67,7 +67,7 @@ console.log("[main] product list:::",productList);
       <Grid
         margin="0px"
         backgroundColor="#fff"
-        padding="0px 28px"
+        padding="0px"
         height="auto"
       >
         <Grid
