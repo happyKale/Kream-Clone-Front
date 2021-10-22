@@ -2,7 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
-  const { src, margin, padding, width, height, borderRadius, border } = props;
+  const {
+    src,
+    margin,
+    padding,
+    width,
+    height,
+    borderRadius,
+    border,
+    backgroundSize,
+  } = props;
   const styles = {
     src: src,
     margin: margin,
@@ -11,6 +20,7 @@ const Image = (props) => {
     height: height,
     borderRadius: borderRadius,
     border: border,
+    backgroundSize: backgroundSize,
   };
 
   return (
@@ -28,6 +38,7 @@ Image.defaultProps = {
   padding: null,
   borderRadius: null,
   border: null,
+  backgroundSize: "cover",
 };
 
 const StyledImage = styled.div`
@@ -38,8 +49,9 @@ const StyledImage = styled.div`
   padding: ${(props) => props.padding};
   border-radius: ${(props) => props.borderRadius};
   border: ${(props) => props.border};
-  background-size: cover;
+  background-size: ${(props) => props.backgroundSize};
   background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export default Image;
