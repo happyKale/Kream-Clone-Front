@@ -47,6 +47,26 @@ const Detail = () => {
         }
     }
 
+    const toTransactionBuy = () => {
+        if (size === null) {
+            window.alert("사이즈를 선택하세요.")
+        }
+        else {
+            history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy"))
+        }
+    }
+
+    const toTransactionSell = () => {
+        if (size === null) {
+            window.alert("사이즈를 선택하세요.")
+        }
+        else {
+            history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("sell"))
+        }
+    }
+
+
+
     React.useEffect(() => {
         // 상세페이지 정보 불러오기 MW dispatch (가격 관련 정보 제외) 
         dispatch(productActions.loadProductByIdMW(productId));
@@ -291,7 +311,7 @@ const Detail = () => {
                                                 borderRadius: "10px",
                                                 color: "#fff"
                                             }}
-                                            onClick={() => { history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy")) }}
+                                            onClick={toTransactionBuy}
                                         >
                                             <div
                                                 style={{
@@ -359,7 +379,7 @@ const Detail = () => {
                                                 color: "#fff",
                                                 marginLeft: "10px",
                                             }}
-                                            onClick={() => { history.push(`/transaction/${product.productId}`); dispatch(saveTypeActions.componentType("buy")) }}
+                                            onClick={toTransactionSell}
                                         >
                                             <div
                                                 style={{

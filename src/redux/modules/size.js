@@ -42,7 +42,7 @@ const getPriceBySizeMW = (productId, size) => {
             .getPriceBySizeAX(productId, size)
             .then((response) => {
                 const priceBySize = response.data;
-                console.log(priceBySize);
+                // console.log(priceBySize);
                 dispatch(getPriceBySize(priceBySize));
             })
     }
