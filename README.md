@@ -7,9 +7,16 @@
 
 👤 백 : 강준규, 구산하, 김태웅
 
-## 🖥 사이트 뷰
+## 🖥 사이트 뷰 
 
-이미지
+[영상으로 보기](https://www.youtube.com/watch?v=ic_AzvTs58s)
+
+![1](https://user-images.githubusercontent.com/58936251/138538431-18ff1876-2a37-4e23-a998-51ce757f346a.png)
+![2](https://user-images.githubusercontent.com/58936251/138538456-f440a8f8-7cdc-47c5-a064-79a5358e7b02.png)
+![3](https://user-images.githubusercontent.com/58936251/138538620-ae82ff0d-3b5b-4247-87b8-936176c562d3.png)
+![4](https://user-images.githubusercontent.com/58936251/138538623-1ce2e47a-85d5-4947-9e44-e778823c9421.png)
+![5](https://user-images.githubusercontent.com/58936251/138538629-a5437f55-b656-4a09-b6f3-3badb08fe340.png)
+
 ## ⚒ 기술
 
 - 프론트
@@ -48,3 +55,4 @@
 ## 우리팀이 해결한 문제
 - 사용자 인증 토큰 전달
     - header의 Authorization 에 넣어도 서버에서 받을 수가 없어서 백엔드가 설정한 key 값을 맞춰서 header에 넣는다.
+- 
