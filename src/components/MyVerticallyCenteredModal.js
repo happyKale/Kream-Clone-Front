@@ -1,26 +1,22 @@
 import React from "react";
-import { history } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
 
 // Bootstrap-related
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import Button from "react-bootstrap/Button";
 
 // Font Awesome-related
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle as farTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimesCircle as farTimesCircle} from '@fortawesome/free-regular-svg-icons';
 
-// Action Creator-related
-import { actionCreators as sizeActions } from "../redux/modules/size";
+import {useSelector, useDispatch} from "react-redux";
+import {actionCreators as sizeActions} from "../redux/modules/size";
 
 function MyVerticallyCenteredModal(props) {
     const dispatch = useDispatch();
 
-    const [size, setSize] = React.useState("");
-
-    const priceBySizeTemporary = useSelector((state) => state.size.priceBuyPromptList);
+    const priceBySizeTemporary = useSelector(
+        (state) => state.size.priceBuyPromptList
+    );
 
     const hideModal = props.onHide;
 
@@ -29,22 +25,19 @@ function MyVerticallyCenteredModal(props) {
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
+            centered="centered">
             {/* layer_container */}
             <div
                 styles={{
                     display: "flex",
                     flexDirection: "column",
-                    // width: "480px",
-                    // height: "514px",
+                    // width: "480px", height: "514px",
                     overflow: "hidden",
                     position: "absolute",
                     top: "50%",
                     left: "50%",
                     // borderRadius: "16px",
-                }}
-            >
+                }}>
                 {/* layer_header */}
                 <div>
                     <h2
@@ -58,9 +51,8 @@ function MyVerticallyCenteredModal(props) {
                             color: "#000",
                             textAlign: "center",
                             backgroundColor: "#fff",
-                            borderRadius: "30px",
-                        }}
-                    >
+                            borderRadius: "30px"
+                        }}>
                         사이즈
                     </h2>
                 </div>
@@ -72,94 +64,84 @@ function MyVerticallyCenteredModal(props) {
                         marginTop: "10px",
                         marginBottom: "32px",
                         overflowX: "hidden",
-                        overflowY: "auto",
-                    }}
-                >
+                        overflowY: "auto"
+                    }}>
                     {/* select_area */}
                     <div
                         style={{
                             padding: "0 32px"
-                        }}
-                    >
+                        }}>
                         <div
                             style={{
-                                // lineHeight: "0",
-                                // margin: "-4px",
-                                // fontSize: "0",
-                            }}
-                        >
-                            {priceBySizeTemporary?.map((p, idx) => {
-                                return (
-                                    <div
-                                        key={p.size}
-                                        style={{
-                                            overflow: "hidden",
-                                            margin: "4px",
-                                            display: "inline-block",
-                                            verticalAlign: "top",
-                                            width: "calc(33.3333% - 8px)",
-                                            height: "52px",
-                                            border: "1px solid #d3d3d3",
-                                            borderRadius: "10px",
-                                            backgroundColor: "#fff",
-
-                                        }}
-                                        onClick={() => {
-                                            // console.log(p.size);
-                                            // setSize 디스패치
-                                            dispatch(sizeActions.setSize(p.size));
-                                            hideModal();
-                                        }}
-                                    >
-                                        <button
-                                            style={{
-                                                width: "100%",
-                                                height: "100%",
-                                                padding: "0",
-                                                border: "0",
-                                                outline: "none",
-                                                background: "none",
-                                                backgroundColor: "rgba(0,0,0,0)",
-                                            }}
-                                        >
+                                // lineHeight: "0", margin: "-4px", fontSize: "0",
+                            }}>
+                            {
+                                priceBySizeTemporary
+                                    ?.map((p, idx) => {
+                                        return (
                                             <div
+                                                key={p.size}
                                                 style={{
-                                                    margin: "0 auto",
-                                                    maxWidth: "90px",
-                                                    padding: "0",
+                                                    overflow: "hidden",
+                                                    margin: "4px",
+                                                    display: "inline-block",
+                                                    verticalAlign: "top",
+                                                    width: "calc(33.3333% - 8px)",
+                                                    height: "52px",
+                                                    border: "1px solid #d3d3d3",
+                                                    borderRadius: "10px",
+                                                    backgroundColor: "#fff"
                                                 }}
-                                            >
-                                                <span
+                                                onClick={() => {
+                                                    // console.log(p.size); setSize 디스패치
+                                                    dispatch(sizeActions.setSize(p.size));
+                                                    hideModal();
+                                                }}>
+                                                <button
                                                     style={{
-                                                        fontWeight: "normal",
-                                                        display: "block",
-                                                        lineHeight: "17px",
-                                                        marginTop: "-3px",
-                                                        fontSize: "12px",
-                                                    }}
-                                                >
-                                                    {p.size}
-                                                </span>
-                                                <span
-                                                    style={{
-                                                        color: "#f15746",
-                                                        fontWeight: "normal",
-                                                        display: "block",
-                                                        lineHeight: "14px",
-                                                        marginTop: "1px",
-                                                        fontSize: "12px",
-                                                    }}
-                                                >
-                                                    {p.price}
-                                                </span>
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        padding: "0",
+                                                        border: "0",
+                                                        outline: "none",
+                                                        background: "none",
+                                                        backgroundColor: "rgba(0,0,0,0)"
+                                                    }}>
+                                                    <div
+                                                        style={{
+                                                            margin: "0 auto",
+                                                            maxWidth: "90px",
+                                                            padding: "0"
+                                                        }}>
+                                                        <span
+                                                            style={{
+                                                                fontWeight: "normal",
+                                                                display: "block",
+                                                                lineHeight: "17px",
+                                                                marginTop: "-3px",
+                                                                fontSize: "12px"
+                                                            }}>
+                                                            {p.size}
+                                                        </span>
+                                                        <span
+                                                            style={{
+                                                                color: "#f15746",
+                                                                fontWeight: "normal",
+                                                                display: "block",
+                                                                lineHeight: "14px",
+                                                                marginTop: "1px",
+                                                                fontSize: "12px"
+                                                            }}>
+                                                            {p.price}
+                                                        </span>
+
+                                                    </div>
+                                                </button>
 
                                             </div>
-                                        </button>
-
-
-                                    </div>
-                                )
-                            })}
+                                        )
+                                    })
+                            }
 
                         </div>
 
@@ -172,8 +154,7 @@ function MyVerticallyCenteredModal(props) {
                         position: "absolute",
                         top: "18px",
                         right: "20px"
-                    }}
-                >
+                    }}>
                     <FontAwesomeIcon
                         onClick={props.onHide}
                         style={{
@@ -181,8 +162,7 @@ function MyVerticallyCenteredModal(props) {
                             height: "24px",
                             color: "#d3d3d3"
                         }}
-                        icon={farTimesCircle}
-                    />
+                        icon={farTimesCircle}/>
                 </div>
             </div>
         </Modal >

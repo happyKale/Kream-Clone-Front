@@ -1,12 +1,9 @@
 import React from "react";
 import styled, {keyframes} from "styled-components";
-import { Cookies } from "react-cookie";
+import {Cookies} from "react-cookie";
 
-import {history} from "../redux/store";
 import {useSelector, useDispatch} from "react-redux";
 import {actionCreators as userCheckAction} from "../redux/modules/user";
-
-
 
 const Header = () => {
 
@@ -16,58 +13,59 @@ const Header = () => {
 
     const [mobileMenu, setMobileMenu] = React.useState(false);
 
-    const cookies =  new Cookies();
+    const cookies = new Cookies();
 
     return (
         <React.Fragment>
             <StyledArticle>
 
-                {
-                    is_login
-                        ? <HeaderTop
-                                className={mobileMenu
-                                    ? "on"
-                                    : "off"}>
-                                <div className="innerBox">
-                                    <div>
-                                        <a href="/mypage" className="myPage" onClick={()=>{
-                                            dispatch(userCheckAction.checkLoginMW('/mypage'));
-                                        }}>마이페이지</a>
-                                        <a
-                                            href="#"
-                                            className="logout"
+                <HeaderTop
+                    className={mobileMenu
+                        ? "on"
+                        : "off"}>
+                    <div className="innerBox">
+                        {
+                            is_login
+                                ? <React.Fragment>
+                                        <div>
+                                            <a
+                                                href="/mypage"
+                                                className="myPage"
+                                                onClick={() => {
+                                                    dispatch(userCheckAction.checkLoginMW('/mypage'));
+                                                }}>마이페이지</a>
+                                            <p
+                                                href="#"
+                                                className="logout"
+                                                onClick={() => {
+                                                    dispatch(userCheckAction.checkLogin(false))
+                                                    cookies.remove('X-AUTH-TOKEN');
+                                                }}>로그아웃</p>
+                                        </div>
+                                        <button
                                             onClick={() => {
-                                                dispatch(userCheckAction.checkLogin(false))
-                                                cookies.remove('X-AUTH-TOKEN');
-                                            }}>로그아웃</a>
-                                    </div>
-                                    <button
-                                        onClick={() => {
-                                            setMobileMenu(false)
-                                        }}><img
-                                        src={process.env.PUBLIC_URL + "/img/closeButton.png"}
-                                        alt="close button"
-                                        width="16.71px"/></button>
-                                </div>
-                            </HeaderTop>
-                        : <HeaderTop
-                                className={mobileMenu
-                                    ? "on"
-                                    : "off"}>
-                                <div className="innerBox">
-                                    <div>
-                                        <a href="/login">로그인</a>
-                                    </div>
-                                    <button
-                                        onClick={() => {
-                                            setMobileMenu(false)
-                                        }}><img
-                                        src={process.env.PUBLIC_URL + "/img/closeButton.png"}
-                                        alt="close button"
-                                        width="16.71px"/></button>
-                                </div>
-                            </HeaderTop>
-                }
+                                                setMobileMenu(false)
+                                            }}><img
+                                            src={process.env.PUBLIC_URL + "/img/closeButton.png"}
+                                            alt="close button"
+                                            width="16.71px"/></button>
+                                    </React.Fragment>
+                                : <React.Fragment>
+                                        <div>
+                                            <a href="/login">로그인</a>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                setMobileMenu(false)
+                                            }}><img
+                                            src={process.env.PUBLIC_URL + "/img/closeButton.png"}
+                                            alt="close button"
+                                            width="16.71px"/></button>
+                                    </React.Fragment>
+                        }
+                    </div>
+                </HeaderTop>
+
                 <HeaderBottom>
 
                     <a href="/">
@@ -123,7 +121,7 @@ border-bottom: 1px solid rgba(0,0,0,.1);
     width:fit-content;
     height: 16px;
     align-items: center;
-    a {
+    a,.logout {
         font-size: 12px;
         color: rgba(34,34,34,.8);
         line-height: 0;
@@ -134,6 +132,8 @@ border-bottom: 1px solid rgba(0,0,0,.1);
 button {
         display: none;
 }
+
+.logout{cursor: pointer;}
 
 
 @media only screen and (max-width:768px){

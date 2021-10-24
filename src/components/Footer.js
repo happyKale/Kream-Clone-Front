@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image } from "../elements";
+import { Grid, Text } from "../elements";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram as fabInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook as fabFacebook } from "@fortawesome/free-brands-svg-icons";

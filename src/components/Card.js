@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { history } from "../redux/store";
 import { Grid, Text, Image } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +16,6 @@ const Card = (props) => {
   const mypage = props.mypage;
   const mypageBookmark = mypage? props.product: null;
   const bookmark = props.product.bookMark;
-  const productList = useSelector((state) => state.product.list.productList);
   const is_login = useSelector((state)=> state.user.is_login)
 
 //   brand: "Jordan"

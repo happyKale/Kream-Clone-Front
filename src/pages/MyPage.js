@@ -1,12 +1,12 @@
 import React from "react";
-import {history} from "../redux/store";
-import {useDispatch, useSelector} from "react-redux";
-import {actionCreators as mypageActions} from "../redux/modules/mypage";
+
 import Header from "../components/Header";
-import { style } from "dom-helpers";
 import styled from "styled-components";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
+
+import {useDispatch, useSelector} from "react-redux";
+import {actionCreators as mypageActions} from "../redux/modules/mypage";
 
 const MyPage = () => {
     const dispatch = useDispatch();

@@ -1,13 +1,15 @@
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
-import _ from "lodash";
-import {actionCreators as transectionAction} from "../redux/modules/transaction";
-import Header from "../components/Header";
-import styled from "styled-components";
-import { Button } from "../elements";
-import { history } from "../redux/store";
 import { useParams } from "react-router";
+import styled from "styled-components";
+import _ from "lodash";
+
+import { Button } from "../elements";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+import { history } from "../redux/store";
+import {useSelector, useDispatch} from "react-redux";
+import {actionCreators as transectionAction} from "../redux/modules/transaction";
 
 const Transection = () => {
     

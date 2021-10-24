@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import {apis} from "../lib/axios";
 import _ from "lodash";
-import {history} from "../redux/store";
+
 import {Button, Text, Input} from "../elements";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+import {history} from "../redux/store";
 
 const Signup = () => {
 
